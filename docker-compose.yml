@@ -10,9 +10,9 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=postgres
     ports:
-      - '5535:5432'
+      - '5540:5432'
     expose:
-      - '5535'
+      - '5540'
     volumes:
       - ./docker/postgres/data:/var/lib/postgresql/data
 
