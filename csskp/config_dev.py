@@ -1,8 +1,8 @@
 ALLOWED_HOSTS = []
 
-SECRET_KEY = "u__*z&=urjtc0t)b)@5qbt_a#3-354=k9x(j)@eu#h7sb=-66s"
+SECRET_KEY = "u__*p&-rrjtc4t)d)@5ybj_a#3=491=k6x[k[@ei#h7mb=-21k"
 
-HASH_KEY = b"hDs3HftLkd9OsxI9smHP-TmGv-4z7h-1xaQp0RYuY20="
+HASH_KEY = b"hDs4HftKsu9OaxI9smHP-TmHv-8r7h-4xaEp0UYhI10-"
 
 DEBUG = True
 

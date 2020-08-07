@@ -1,9 +1,9 @@
-# Fit4Cybersecurity
+# SupplierContract
 
-Fit4Cybersecurity is a self-assessment tool by [CASES](https://www.cases.lu)
-to help business owners implement a better cybersecurity strategy.
+SupplierContract is a self-assessment tool developed by [CASES](https://www.cases.lu)
+to help business owners find a right service supplier and obtain a contract information.
 
-The official CASES instance is available [here](https://startup.cases.lu).
+The official instance is available [here](https://contract-supplier.anssi.lu).
 
 
 ## Deployment
@@ -27,8 +27,8 @@ $ pyenv versions # check
 
 
 ```bash
-$ git clone https://github.com/CASES-LU/Fit4Cybersecurity.git
-$ cd Fit4Cybersecurity/
+$ git clone https://github.com/CASES-LU/SupplierContract.git
+$ cd SupplierContract/
 $ npm install
 $ poetry install
 ```
@@ -75,7 +75,7 @@ be *password*.
 ## Upgrading the application
 
 ```bash
-$ cd Fit4Cybersecurity/
+$ cd SupplierContract/
 $ git pull origin master
 $ poetry run python manage.py migrate
 $ poetry run python manage.py compilemessages
