@@ -26,12 +26,11 @@ class Migration(migrations.Migration):
             name="SurveyQuestion",
             fields=[
                 (
-                    "id",
-                    models.AutoField(
-                        auto_created=True,
+                    "uuid",
+                    models.UUIDField(
+                        default=uuid.uuid4,
                         primary_key=True,
-                        serialize=False,
-                        verbose_name="ID",
+                        serialize=False
                     ),
                 ),
                 ("titleKey", models.CharField(max_length=32)),

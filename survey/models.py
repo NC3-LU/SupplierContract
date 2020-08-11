@@ -85,6 +85,7 @@ class SurveyQuestion(models.Model):
     # QuestionCatID
     # Section ID
 
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     service_category = models.ForeignKey(
         SurveyQuestionServiceCategory, on_delete=models.CASCADE
     )
@@ -125,6 +126,24 @@ class SurveyQuestionAnswer(models.Model):
         unique_together = ("aindex", "question")
 
 
+class SurveyAnswerQuestionMap(models.Model):
+    # Used to define answers -> questions sequesnces
+    # For example answer ID 1 can be linked with multiple questions (IDs: 2, 3, 4) with specific order (1, 2, 3).
+    # That means if user selected answer ID 1 it leads him/her to the squence of linked questions (IDs 2, 3, 4)
+    # In case if sub answers has defined sequence (e.g. question ID 3 has an answer 10,
+    # which is linked to question ID 7), that means sub question (ID 7) will be displayed before the rest of
+    # the questions in that sequence (before ID 4).
+
+    answer = models.ForeignKey(SurveyQuestionAnswer, on_delete=models.CASCADE)
+    question = models.ForeignKey(SurveyQuestion, on_delete=models.CASCADE)
+    order = models.IntegerField()
+
+    class Meta:
+        unique_together = ("answer", "question")
+
+    def __str__(self):
+        return str(self.answer + '_' + self.question)
+
 class SurveyUser(models.Model):
     # user ID - Hash or UUID
     # Sector
@@ -140,7 +159,7 @@ class SurveyUser(models.Model):
     )
     country_code = models.CharField(max_length=2, blank=False, default="LU")
 
-    current_qindex = models.IntegerField(default=0)
+    current_question = models.ForeignKey(SurveyQuestion, on_delete=models.CASCADE)
     status = models.SmallIntegerField(default=SURVEY_STATUS_IN_PROGRESS)
 
     created_at = models.DateField(auto_now_add=True, blank=True)
@@ -159,24 +178,7 @@ class SurveyUser(models.Model):
         return self.status == SURVEY_STATUS_FINISHED
 
 
-"""
-class SurveyUserAnswers(models.Model):
-    # UUID user
-    # QuestionID
-    # AnswerListID
-
-    user = models.ForeignKey(SurveyUser,on_delete=models.CASCADE)
-    question = models.ForeignKey(SurveyQuestion,on_delete=models.CASCADE)
-
-    def __str__(self):
-        return str(self.user)
-
-"""
-
-
 class SurveyUserAnswer(models.Model):
-    # AnswerID
-    # AnswerListID
     user = models.ForeignKey(SurveyUser, on_delete=models.CASCADE)
     answer = models.ForeignKey(SurveyQuestionAnswer, on_delete=models.CASCADE)
     # 0, 1 for true, false selections, or -inf to +inf for value slider questions
@@ -193,6 +195,19 @@ class SurveyUserFeedback(models.Model):
 
     def __str__(self):
         return str(self.feedback)
+
+
+class SurveyUserQuestionSequence(models.Model):
+    user = models.ForeignKey(SurveyUser, on_delete=models.CASCADE)
+    question = models.ForeignKey(SurveyQuestionAnswer, on_delete=models.CASCADE)
+    index = models.IntegerField(default=1)
+    has_been_answered = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.user)
+
+    class Meta:
+        unique_together = ("user", "question")
 
 
 class Recommendations(models.Model):

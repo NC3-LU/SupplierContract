@@ -1,3 +1,9 @@
+/*
+If we want to autogenerate the uuids:
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+uuid_generate_v4()
+*/
+
 /* survey_surveyquestionservicecategory */
 INSERT INTO "survey_surveyquestionservicecategory" ("id", "titleKey") VALUES (1, 'SERVCAT001GENERAL');
 INSERT INTO "survey_surveyquestionservicecategory" ("id", "titleKey") VALUES (2, 'SERVCAT002LOGMAINTENANCE');
@@ -19,48 +25,48 @@ INSERT INTO "survey_surveysection" ("id", "sectionTitleKey") VALUES (6, 'SECTION
 INSERT INTO "survey_surveysection" ("id", "sectionTitleKey") VALUES (7, 'SECTION006BACKUP');
 
 /* survey_surveyquestion */
-INSERT INTO "survey_surveyquestion" ("id", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES (1, 'Q001GENERAL', 'M', 1, 1, 1, 45);
-INSERT INTO "survey_surveyquestion" ("id", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES (2, 'Q002LOGMAINTENANCE', 'S', 2, 2, 2, 30);
-INSERT INTO "survey_surveyquestion" ("id", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES (3, 'Q003LOGDEV', 'S', 3, 3, 2, 35);
-INSERT INTO "survey_surveyquestion" ("id", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES (4, 'Q004RH1', 'S', 4, 4, 3, 15);
-INSERT INTO "survey_surveyquestion" ("id", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES (5, 'Q005RH2', 'M', 5, 5, 3, 35);
-INSERT INTO "survey_surveyquestion" ("id", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES (6, 'Q006AUDIT', 'S', 6, 6, 4, 15);
-INSERT INTO "survey_surveyquestion" ("id", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES (7, 'Q007REGL', 'S', 7, 7, 5, 30);
-INSERT INTO "survey_surveyquestion" ("id", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES (8, 'Q008SERVICE', 'M', 8, 8, 6, 45);
-INSERT INTO "survey_surveyquestion" ("id", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES (9, 'Q009BACKUP', 'M', 9, 9, 7, 25);
+INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES ('070946ca-abb0-44d0-b4b5-04c3155b78a9', 'Q001GENERAL', 'M', 1, 1, 1, 45);
+INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES ('96eba38d-5129-461e-986c-50e5dc3b479f', 'Q002LOGMAINTENANCE', 'S', 2, 2, 2, 30);
+INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES ('65a694eb-8043-4ba5-a515-ab986b00bf17', 'Q003LOGDEV', 'S', 3, 3, 2, 35);
+INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES ('5fdd319c-cbcb-4dd9-a7d8-4277a977f697', 'Q004RH1', 'S', 4, 4, 3, 15);
+INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES ('059a045d-c7ea-422f-8d42-288400349a51', 'Q005RH2', 'M', 5, 5, 3, 35);
+INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES ('5251e7ff-4560-4d7a-a624-a002e35ab753', 'Q006AUDIT', 'S', 6, 6, 4, 15);
+INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES ('31a93341-8df1-4bf9-93c6-377089be1756', 'Q007REGL', 'S', 7, 7, 5, 30);
+INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES ('586ffb9e-70a0-4c00-9ada-f99e44bb32a3', 'Q008SERVICE', 'M', 8, 8, 6, 45);
+INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES ('daa729d6-db30-4e4b-b91c-6610f7287c3e', 'Q009BACKUP', 'M', 9, 9, 7, 25);
 
 /* survey_surveyquestionanswer */
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (1, 'Q001GENERALA001', 10, 1, FALSE, 0);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (2, 'Q001GENERALA002', 20, 1, FALSE, 15);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (3, 'Q001GENERALA003', 30, 1, FALSE, 5);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (4, 'Q001GENERALA004', 40, 1, FALSE, 10);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (5, 'Q001GENERALA005', 50, 1, FALSE, 5);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (1, 'Q001GENERALA001', 10, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (2, 'Q001GENERALA002', 20, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 15);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (3, 'Q001GENERALA003', 30, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 5);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (4, 'Q001GENERALA004', 40, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 10);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (5, 'Q001GENERALA005', 50, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 5);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (6, 'Q002LOGMAINTENANCEA001', 10, 2, TRUE, 0);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (7, 'Q002LOGMAINTENANCEA002', 20, 2, TRUE, 10);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (6, 'Q002LOGMAINTENANCEA001', 10, '96eba38d-5129-461e-986c-50e5dc3b479f', TRUE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (7, 'Q002LOGMAINTENANCEA002', 20, '96eba38d-5129-461e-986c-50e5dc3b479f', TRUE, 10);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (8, 'Q003LOGDEVA001', 10, 3, TRUE, 15);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (9, 'Q003LOGDEVA002', 20, 3, TRUE, 5);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (8, 'Q003LOGDEVA001', 10, '65a694eb-8043-4ba5-a515-ab986b00bf17', TRUE, 15);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (9, 'Q003LOGDEVA002', 20, '65a694eb-8043-4ba5-a515-ab986b00bf17', TRUE, 5);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (10, 'Q004RH1A001', 10, 4, TRUE, 15);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (11, 'Q004RH1A002', 20, 4, TRUE, 15);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (10, 'Q004RH1A001', 10, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', TRUE, 15);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (11, 'Q004RH1A002', 20, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', TRUE, 15);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (12, 'Q005RH2A001', 10, 5, FALSE, 35);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (13, 'Q005RH2A002', 20, 5, FALSE, 15);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (14, 'Q005RH2A003', 30, 5, FALSE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (12, 'Q005RH2A001', 10, '059a045d-c7ea-422f-8d42-288400349a51', FALSE, 35);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (13, 'Q005RH2A002', 20, '059a045d-c7ea-422f-8d42-288400349a51', FALSE, 15);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (14, 'Q005RH2A003', 30, '059a045d-c7ea-422f-8d42-288400349a51', FALSE, 0);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (15, 'Q006AUDITA001', 10, 6, TRUE, 0);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (16, 'Q006AUDITA002', 20, 6, TRUE, 5);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (15, 'Q006AUDITA001', 10, '5251e7ff-4560-4d7a-a624-a002e35ab753', TRUE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (16, 'Q006AUDITA002', 20, '5251e7ff-4560-4d7a-a624-a002e35ab753', TRUE, 5);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (17, 'Q007REGLA001', 10, 7, TRUE, 30);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (18, 'Q007REGLA002', 20, 7, TRUE, 10);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (17, 'Q007REGLA001', 10, '31a93341-8df1-4bf9-93c6-377089be1756', TRUE, 30);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (18, 'Q007REGLA002', 20, '31a93341-8df1-4bf9-93c6-377089be1756', TRUE, 10);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (19, 'Q008SERVICEA001', 10, 8, FALSE, 0);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (20, 'Q008SERVICEA002', 20, 8, FALSE, 0);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (21, 'Q008SERVICEA003', 30, 8, FALSE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (19, 'Q008SERVICEA001', 10, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', FALSE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (20, 'Q008SERVICEA002', 20, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', FALSE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (21, 'Q008SERVICEA003', 30, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', FALSE, 0);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (22, 'Q009BACKUPA001', 10, 9, FALSE, 25);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (23, 'Q009BACKUPA002', 20, 9, FALSE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (22, 'Q009BACKUPA001', 10, 'daa729d6-db30-4e4b-b91c-6610f7287c3e', FALSE, 25);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (23, 'Q009BACKUPA002', 20, 'daa729d6-db30-4e4b-b91c-6610f7287c3e', FALSE, 0);
 
 
 /* survey_recommendations */

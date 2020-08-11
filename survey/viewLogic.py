@@ -8,6 +8,8 @@ from survey.models import (
     SurveyUserAnswer,
     TranslationKey,
     SurveyUserFeedback,
+    SurveyAnswerQuestionMap,
+    SurveyUserQuestionSequence,
     SURVEY_STATUS_UNDER_REVIEW,
 )
 from survey.forms import InitialStartForm, AnswerMChoice, GeneralFeedback
@@ -21,7 +23,7 @@ def create_user(lang: str, sector: str, company_size: str, country: str):
     user.e_count = company_size
     user.country_code = country
     survey_question = SurveyQuestion.objects.order_by("qindex")[:1]
-    user.current_qindex = survey_question[0].qindex
+    user.current_question = survey_question[0]
 
     # prevent the use of custom languages
     langs = [x[0] for x in LANG_SELECT]
@@ -54,7 +56,12 @@ def handle_start_survey(request, lang: str):
             request.session["lang"] = lang
             request.session["user_id"] = str(user.user_id)
 
-            return user
+            user_question_sequence = SurveyUserQuestionSequence()
+            user_question_sequence.user = user
+            user_question_sequence.question = user.current_question
+            user_question_sequence.save()
+
+            return True
     else:
         form = InitialStartForm(lang=lang)
 
@@ -68,12 +75,24 @@ def handle_start_survey(request, lang: str):
 
 
 def handle_question_answers_request(request, user: SurveyUser, question_index: int):
-    (
-        previous_question,
-        current_question,
-        next_question,
-        total_questions_num,
-    ) = get_questions_slice(question_index)
+    # TODO:
+    # 1. we have current question from user, we can validate if it is the first one and no history (second is not mandatory)
+    # 2. if it is the first question and request is get, then we don't need to do anything extra, number of questions is not defined yet (the progress bar should be adjusted - removed numbers - 0 for now.)
+    # 3. in case if it is post and the question is first we create a record in history table and based on selected answers determine the next quedtion, previous = current, and total questions num (which is not 100% correct).
+    # 4. if the question is not the first one:
+    # 4. a) we validate if the current answer (with value 1) has a related questions sequence, and if yes, it should be completed first.
+    # 4. b) every time we validate the questions history if the firt answered question has a relation with answers and related to the answer sequesnce is completed.
+    # 5. We need to concider a different scenario in case if the question_index and current user question index are not the same (in case of post erase all the answers, sequence after the question index and rebuild based on the selected answers)
+
+    # TODO: replace with getting from squence.
+    # (
+    #     previous_question,
+    #     current_question,
+    #     next_question,
+    #     total_questions_num,
+    # ) = get_questions_slice(user, question_index)
+
+    current_question = get_question_from_sequence_by_user_and_index(user, question_index)
 
     try:
         tuple_answers = get_answer_choices(current_question, user.choosen_lang)
@@ -90,6 +109,8 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
 
         if form.is_valid():
             with transaction.atomic():
+                # TODO: related to point #5:
+                # if current_question != user.current_question:
                 user = SurveyUser.objects.select_for_update(nowait=True).filter(id=user.id)[0]
                 answers = form.cleaned_data["answers"]
                 save_answers(tuple_answers, answers, user)
@@ -108,10 +129,11 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
                     user_feedback.feedback = feedback
                     user_feedback.save()
 
-                if next_question != None:
-                    user.current_qindex = next_question.qindex
-                else:
-                    user.status = SURVEY_STATUS_UNDER_REVIEW
+                #TODO: we need to handle many things here.
+                # if next_question != None:
+                #     user.current_question = next_question
+                # else:
+                #     user.status = SURVEY_STATUS_UNDER_REVIEW
 
                 user.save()
 
@@ -215,7 +237,9 @@ def get_answer_choices(survey_question: SurveyQuestion, user_lang: str):
     return tuple_answers
 
 
-def get_questions_slice(question_index: int):
+# TODO: remove the method
+def get_questions_slice(user: SurveyUser, question_index: int):
+
     survey_questions = SurveyQuestion.objects.order_by("qindex")
     total_questions_num = len(survey_questions)
     previous_question = survey_questions[0]
@@ -275,9 +299,7 @@ def get_questions_with_user_answers(user: SurveyUser):
 
 
 def handle_general_feedback(user: SurveyUser(), request):
-    user_feedback = SurveyUserFeedback.objects.filter(user=user, question__isnull=True)[
-        :1
-    ]
+    user_feedback = SurveyUserFeedback.objects.filter(user=user, question__isnull=True)[:1]
 
     if request.method == "POST":
         general_feedback_form = GeneralFeedback(
@@ -304,3 +326,19 @@ def handle_general_feedback(user: SurveyUser(), request):
         general_feedback_form.set_general_feedback(user_feedback[0].feedback)
 
     return general_feedback_form
+
+
+def get_user_question_index_from_sequence(user: SurveyUser):
+    user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user, question=user.current_question)[:1]
+
+    return user_question_sequence.index
+
+
+def get_question_from_sequence_by_user_and_index(user: SurveyUser, index: int):
+    user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user, index=index)[:1]
+
+    return user_question_sequence.question
+
+
+def get_questions_sequence(user: SurveyUser):
+    SurveyUserQuestionSequence.objects.filter(user=user).order("index")
