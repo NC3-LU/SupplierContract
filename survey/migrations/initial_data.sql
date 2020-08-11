@@ -193,7 +193,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION002LOGICIEL', 'Logiciel', 'en', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION003RH', 'Ressources humaines', 'en', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION004AUDIT', 'Audit', 'en', 'S');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION005CONTRAINTESREGL', 'Contraintes règlementaires', 'fr', 'S');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION005CONTRAINTESREGL', 'Contraintes règlementaires', 'de', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION006SERVICE', 'Service', 'en', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION006BACKUP', 'Backup', 'en', 'S');
 -- DE
@@ -201,7 +201,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION002LOGICIEL', 'Logiciel', 'de', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION003RH', 'Ressources humaines', 'de', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION004AUDIT', 'Audit', 'de', 'S');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION005CONTRAINTESREGL', 'Contraintes règlementaires', 'fr', 'S');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION005CONTRAINTESREGL', 'Contraintes règlementaires', 'de', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION006SERVICE', 'Service', 'de', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION006BACKUP', 'Backup', 'de', 'S');
 -- FR

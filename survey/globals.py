@@ -103,9 +103,9 @@ TRANSLATION_UI = {
         "download": {"en": "Download", "fr": "Téléchargement", "de": "Herunterladen",},
         "report": {"en": "Summary", "fr": "Résumé", "de": "Zusammenfassung",},
         "description": {
-            "en": "This is the list of recommendations to improve the information security maturity in your company, provided that your answers did correctly reflect the state in your company. Also keep in mind that it is a self-assessment and only scratches the surface of the information security maturity level and thus, we are not liable for the results of this survey.",
-            "fr": "Voici la liste des recommandations visant à améliorer la maturité de la sécurité de l'information dans votre entreprise, à condition que vos réponses reflètent correctement l'état de votre entreprise. N'oubliez pas non plus qu'il s'agit d'une auto-évaluation et qu'elle ne fait qu'effleurer le niveau de maturité de la sécurité de l'information. Par conséquent, nous ne sommes pas responsables des résultats de cette enquête.",
-            "de": "Dies ist die Liste der Empfehlungen zur Verbesserung der Informationssicherheitsreife in Ihrem Unternehmen, sofern Ihre Antworten den Status in Ihrem Unternehmen korrekt widerspiegeln. Denken Sie auch daran, dass es sich um eine Selbsteinschätzung handelt, die nur die Oberfläche des Reifegrads der Informationssicherheit abbilden kann, und wir daher nicht für die Ergebnisse dieser Umfrage haften.",
+            "en": "This is the list of recommendations to help you to write a subcontract, provided that your answers did correctly reflect the context. Also keep in mind that it is a self-assessment and only scratches the surface of the information security maturity level and thus, we are not liable for the results of this survey.",
+            "fr": "Voici la liste des recommandations visant à vous aider à rédiger un contrat de sous-traitance, à condition que vos réponses reflètent correctement le contexte. N'oubliez pas non plus qu'il s'agit d'une auto-évaluation et qu'elle ne fait qu'effleurer le niveau de maturité de la sécurité de l'information. Par conséquent, nous ne sommes pas responsables des résultats de cette enquête.",
+            "de": "Dies ist die Liste der Empfehlungen, die Ihnen helfen sollen, einen Untervertrag zu verfassen, vorausgesetzt, dass Ihre Antworten den Kontext richtig wiedergeben. Denken Sie auch daran, dass es sich um eine Selbsteinschätzung handelt, die nur die Oberfläche des Reifegrads der Informationssicherheit abbilden kann, und wir daher nicht für die Ergebnisse dieser Umfrage haften.",
         },
         "title": {
             "en": "final summary",
@@ -157,7 +157,7 @@ TRANSLATION_UI = {
             },
             "title": {
                 "en": "Please provide your feedback",
-                "fr": "S'il vous plaît fournir vos commentaires",
+                "fr": "S'il vous plaît, fournissez vos commentaires",
                 "de": "Bitte geben Sie Ihr Feedback",
             },
             "button_close": {"en": "Close", "fr": "Fermer", "de": "Schließen",},
@@ -169,7 +169,7 @@ TRANSLATION_UI = {
             },
             "placeholder": {
                 "en": "Please share your opinion about our tool",
-                "fr": "S'il vous plaît partagez votre opinion sur notre outil",
+                "fr": "S'il vous plaît, partagez votre opinion sur notre outil",
                 "de": "Bitte teilen Sie Ihre Meinung zu unserem Tool",
             },
         },
