@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('index', models.IntegerField(default=1)),
                 ('has_been_answered', models.BooleanField(default=False)),
-                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='survey.SurveyQuestionAnswer')),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='survey.SurveyQuestion')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='survey.SurveyUser')),
             ],
             options={

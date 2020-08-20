@@ -177,8 +177,8 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
         "action": "/survey/question/" + str(current_question.qindex),
         "user": user,
         "current_question_index": current_question.qindex,
-        "previous_question_index": previous_question.qindex,
-        "total_questions_num": total_questions_num,
+        "previous_question_index": None,#TODO:...
+        "total_questions_num": 12,#TODO:...
         "available_langs": [lang[0] for lang in LANG_SELECT],
     }
 
@@ -331,13 +331,13 @@ def handle_general_feedback(user: SurveyUser(), request):
 def get_user_question_index_from_sequence(user: SurveyUser):
     user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user, question=user.current_question)[:1]
 
-    return user_question_sequence.index
+    return user_question_sequence[0].index
 
 
 def get_question_from_sequence_by_user_and_index(user: SurveyUser, index: int):
     user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user, index=index)[:1]
 
-    return user_question_sequence.question
+    return user_question_sequence[0].question
 
 
 def get_questions_sequence(user: SurveyUser):

@@ -199,7 +199,7 @@ class SurveyUserFeedback(models.Model):
 
 class SurveyUserQuestionSequence(models.Model):
     user = models.ForeignKey(SurveyUser, on_delete=models.CASCADE)
-    question = models.ForeignKey(SurveyQuestionAnswer, on_delete=models.CASCADE)
+    question = models.ForeignKey(SurveyQuestion, on_delete=models.CASCADE)
     index = models.IntegerField(default=1)
     has_been_answered = models.BooleanField(default=False)
 
