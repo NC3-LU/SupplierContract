@@ -9,7 +9,7 @@ from survey.viewLogic import (
     find_user_by_id,
     get_questions_with_user_answers,
     handle_general_feedback,
-    get_user_question_index_from_sequence
+    get_current_user_question_index_from_sequence
 )
 from survey.reporthelper import calculateResult, createAndSendReport, getRecommendations
 from survey.globals import TRANSLATION_UI, MIN_ACCEPTABLE_SCORE, LANG_SELECT
@@ -46,7 +46,8 @@ def handle_question_form(request, question_index: int):
 
     if user.is_survey_finished():
         return HttpResponseRedirect("/survey/finish")
-    user_current_question_index = get_user_question_index_from_sequence(user)
+
+    user_current_question_index = get_current_user_question_index_from_sequence(user)
     if user_current_question_index < question_index:
         return HttpResponseRedirect("/survey/question/" + str(user_current_question_index))
 
@@ -60,7 +61,7 @@ def handle_question_form(request, question_index: int):
         if result.is_survey_under_review():
             return HttpResponseRedirect("/survey/review" + review_ancher)
 
-        return HttpResponseRedirect("/survey/question/" + str(user_current_question_index))
+        return HttpResponseRedirect("/survey/question/" + str(get_current_user_question_index_from_sequence(result)))
 
     add_form_translations(result, user.choosen_lang, "question")
 
@@ -262,7 +263,7 @@ def resume(request):
     request.session["user_id"] = str(user_id)
 
     if user.is_survey_in_progress():
-        return HttpResponseRedirect("/survey/question/" + str(user.current_qindex))
+        return HttpResponseRedirect("/survey/question/" + str(get_current_user_question_index_from_sequence(user)))
 
     if user.is_survey_under_review():
         return HttpResponseRedirect("/survey/review")
@@ -290,7 +291,7 @@ def save_general_feedback(request):
         return HttpResponseRedirect("/survey/finish")
 
     if user.is_survey_in_progress():
-        return HttpResponseRedirect("/survey/question/" + str(user.current_qindex))
+        return HttpResponseRedirect("/survey/question/" + str(get_current_user_question_index_from_sequence(user)))
 
     if user.is_survey_under_review():
         return HttpResponseRedirect("/survey/review")

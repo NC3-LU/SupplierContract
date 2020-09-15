@@ -136,13 +136,14 @@ class SurveyAnswerQuestionMap(models.Model):
 
     answer = models.ForeignKey(SurveyQuestionAnswer, on_delete=models.CASCADE)
     question = models.ForeignKey(SurveyQuestion, on_delete=models.CASCADE)
+    branch = models.SmallIntegerField(null=True)
     order = models.IntegerField()
 
     class Meta:
         unique_together = ("answer", "question")
 
     def __str__(self):
-        return str(self.answer + '_' + self.question)
+        return str(self.answer.id) + '_' + str(self.question.uuid)
 
 class SurveyUser(models.Model):
     # user ID - Hash or UUID
@@ -200,6 +201,7 @@ class SurveyUserFeedback(models.Model):
 class SurveyUserQuestionSequence(models.Model):
     user = models.ForeignKey(SurveyUser, on_delete=models.CASCADE)
     question = models.ForeignKey(SurveyQuestion, on_delete=models.CASCADE)
+    branch = models.SmallIntegerField(null=True)
     index = models.IntegerField(default=1)
     has_been_answered = models.BooleanField(default=False)
 

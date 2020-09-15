@@ -1,5 +1,7 @@
 from django.utils.html import format_html, mark_safe
 from django.db import transaction
+from django.db.models import Count
+import math
 
 from survey.models import (
     SurveyUser,
@@ -84,15 +86,8 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
     # 4. b) every time we validate the questions history if the firt answered question has a relation with answers and related to the answer sequesnce is completed.
     # 5. We need to concider a different scenario in case if the question_index and current user question index are not the same (in case of post erase all the answers, sequence after the question index and rebuild based on the selected answers)
 
-    # TODO: replace with getting from squence.
-    # (
-    #     previous_question,
-    #     current_question,
-    #     next_question,
-    #     total_questions_num,
-    # ) = get_questions_slice(user, question_index)
-
-    current_question = get_question_from_sequence_by_user_and_index(user, question_index)
+    sequence = get_sequence_by_user_and_index(user, question_index)
+    current_question = sequence.question
 
     try:
         tuple_answers = get_answer_choices(current_question, user.choosen_lang)
@@ -109,11 +104,17 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
 
         if form.is_valid():
             with transaction.atomic():
-                # TODO: related to point #5:
-                # if current_question != user.current_question:
+
                 user = SurveyUser.objects.select_for_update(nowait=True).filter(id=user.id)[0]
                 answers = form.cleaned_data["answers"]
-                save_answers(tuple_answers, answers, user)
+                current_branch = 0
+                if question_index > 1:
+                    current_branch = sequence.branch
+                # TODO: if not has_user_answered_on_the_question(user, current_question):
+                # TODO: we need to determine if the answers changed
+                #1 in case we modified previous answer, and it leads to add extra questions it is fine, we will get it:
+                #2 in case if we have to remove answers or add new ones then before save we check if the answers are updated and do the stuff.
+                save_answers(tuple_answers, answers, user, current_branch)
 
                 feedback = form.cleaned_data["feedback"]
                 if feedback:
@@ -129,11 +130,16 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
                     user_feedback.feedback = feedback
                     user_feedback.save()
 
-                #TODO: we need to handle many things here.
-                # if next_question != None:
-                #     user.current_question = next_question
-                # else:
-                #     user.status = SURVEY_STATUS_UNDER_REVIEW
+                mark_question_as_answered(user, question_index)
+
+                next_sequence = get_next_sequence_with_not_answered_question(user, question_index)
+                if not next_sequence == None and not next_sequence.index == question_index + 1:
+                    reindex_questions_sequence_order_from(user, question_index)
+
+                if next_sequence != None:
+                    user.current_question = next_sequence.question
+                else:
+                    user.status = SURVEY_STATUS_UNDER_REVIEW
 
                 user.save()
 
@@ -167,23 +173,19 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
 
     return {
         "title": "Fit4Cybersecurity - "
-        + TRANSLATION_UI["question"]["question"][user.choosen_lang]
-        + " "
-        + str(current_question.qindex),
-        "question": TranslationKey.objects.filter(
-            key=current_question.titleKey, lang=user.choosen_lang
-        )[0].text,
+        + TRANSLATION_UI["question"]["question"][user.choosen_lang] + " " + str(question_index),
+        "question": TranslationKey.objects.filter(key=current_question.titleKey, lang=user.choosen_lang)[0].text,
         "form": form,
-        "action": "/survey/question/" + str(current_question.qindex),
+        "action": "/survey/question/" + str(question_index),
         "user": user,
-        "current_question_index": current_question.qindex,
-        "previous_question_index": None,#TODO:...
-        "total_questions_num": 12,#TODO:...
+        "current_question_index": question_index,
+        "previous_question_index": question_index - 1,
+        "total_questions_num": get_total_questions_number(user, question_index),
         "available_langs": [lang[0] for lang in LANG_SELECT],
     }
 
 
-def save_answers(answer_choices, answers, user: SurveyUser):
+def save_answers(answer_choices, answers, user: SurveyUser, current_branch: int):
     existing_answer_ids = [int(i[0]) for i in answer_choices]
     user_answers = [int(i) for i in answers]
     for a in existing_answer_ids:
@@ -199,8 +201,43 @@ def save_answers(answer_choices, answers, user: SurveyUser):
         answer.uvalue = 0
         if a in user_answers:
             answer.uvalue = 1
+            create_questions_sequence(user, answer.answer, existing_answer_ids.index(a), current_branch)
 
         answer.save()
+
+
+def create_questions_sequence(user: SurveyUser, question_answer: SurveyQuestionAnswer,
+                                answer_index: int, current_branch: int):
+    answer_questions_map = SurveyAnswerQuestionMap.objects.filter(answer=question_answer).order_by("order")
+    number_of_questions_in_user_sequence = get_number_of_questions_in_user_sequence(user)
+    for answer_question_map in answer_questions_map:
+        is_question_in_sequence = is_question_in_user_sequence(user, answer_question_map.question)
+        if (not is_question_in_sequence and (
+                answer_question_map.branch == None or current_branch == answer_question_map.branch)
+            ):
+            user_question_sequence = SurveyUserQuestionSequence()
+            user_question_sequence.user = user
+            user_question_sequence.question = answer_question_map.question
+            number_of_questions_in_user_sequence += 1
+            user_question_sequence.index = number_of_questions_in_user_sequence
+            user_question_sequence.branch = current_branch
+            if current_branch == 0:
+                user_question_sequence.branch = answer_index + 1
+
+            user_question_sequence.save()
+
+        if not is_question_in_sequence and not answer_question_map.branch == None:
+            branches = SurveyUserQuestionSequence.objects.filter(user=user,
+                    branch__isnull=False).values('branch').distinct().values_list('branch', flat=True)
+            if answer_question_map.branch in list(branches):
+                user_question_sequence = SurveyUserQuestionSequence()
+                user_question_sequence.user = user
+                user_question_sequence.question = answer_question_map.question
+                number_of_questions_in_user_sequence += 1
+                user_question_sequence.index = number_of_questions_in_user_sequence
+                user_question_sequence.branch = answer_question_map.branch
+
+                user_question_sequence.save()
 
 
 def find_user_by_id(user_id):
@@ -237,26 +274,6 @@ def get_answer_choices(survey_question: SurveyQuestion, user_lang: str):
     return tuple_answers
 
 
-# TODO: remove the method
-def get_questions_slice(user: SurveyUser, question_index: int):
-
-    survey_questions = SurveyQuestion.objects.order_by("qindex")
-    total_questions_num = len(survey_questions)
-    previous_question = survey_questions[0]
-    next_question = None
-    current_element_index = 0
-    for survey_question in survey_questions:
-        if question_index == survey_question.qindex:
-            current_question = survey_question
-            if current_element_index + 1 < total_questions_num:
-                next_question = survey_questions[current_element_index + 1]
-            break
-        previous_question = survey_question
-        current_element_index += 1
-
-    return previous_question, current_question, next_question, total_questions_num
-
-
 def get_questions_with_user_answers(user: SurveyUser):
     survey_user_answers = SurveyUserAnswer.objects.filter(user=user).order_by(
         "answer__question__qindex", "answer__aindex"
@@ -264,12 +281,20 @@ def get_questions_with_user_answers(user: SurveyUser):
     questions_translations = get_formatted_translations(user.choosen_lang, "Q")
     answers_translations = get_formatted_translations(user.choosen_lang, "A")
 
+    answered_questions_sequence = get_answered_question_sequence(user)
+
     user_feedbacks = SurveyUserFeedback.objects.filter(
         user=user, question__isnull=False
     )
     feedbacks_per_question = {}
     for user_feedback in user_feedbacks:
-        feedbacks_per_question[user_feedback.question.qindex] = user_feedback.feedback
+        question_index = user_feedback.question.qindex
+        for answered_question_sequence in answered_questions_sequence:
+            if answered_question_sequence.question.uuid == user_feedback.question.uuid:
+                question_index = answered_question_sequence.index
+                break
+
+        feedbacks_per_question[question_index] = user_feedback.feedback
 
     questions_with_user_answers = {}
     for survey_user_answer in survey_user_answers:
@@ -277,6 +302,11 @@ def get_questions_with_user_answers(user: SurveyUser):
             survey_user_answer.answer.question.titleKey
         ]
         question_index = survey_user_answer.answer.question.qindex
+        for answered_question_sequence in answered_questions_sequence:
+            if answered_question_sequence.question.uuid == survey_user_answer.answer.question.uuid:
+                question_index = answered_question_sequence.index
+                break
+
         if question_index not in questions_with_user_answers:
             feedback = ""
             if question_index in feedbacks_per_question:
@@ -295,7 +325,7 @@ def get_questions_with_user_answers(user: SurveyUser):
             }
         )
 
-    return questions_with_user_answers
+    return {k: v for k, v in sorted(questions_with_user_answers.items())}
 
 
 def handle_general_feedback(user: SurveyUser(), request):
@@ -328,17 +358,68 @@ def handle_general_feedback(user: SurveyUser(), request):
     return general_feedback_form
 
 
-def get_user_question_index_from_sequence(user: SurveyUser):
-    user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user, question=user.current_question)[:1]
-
-    return user_question_sequence[0].index
-
-
-def get_question_from_sequence_by_user_and_index(user: SurveyUser, index: int):
-    user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user, index=index)[:1]
-
-    return user_question_sequence[0].question
+def get_current_user_question_index_from_sequence(user: SurveyUser):
+    user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user, question=user.current_question)
+    if user_question_sequence:
+        return user_question_sequence[0].index
+    else:
+        return 0
 
 
-def get_questions_sequence(user: SurveyUser):
-    SurveyUserQuestionSequence.objects.filter(user=user).order("index")
+def get_sequence_by_user_and_index(user: SurveyUser, index: int):
+    return SurveyUserQuestionSequence.objects.filter(user=user, index=index)[:1][0]
+
+
+def is_question_in_user_sequence(user: SurveyUser, question: SurveyQuestion):
+    return SurveyUserQuestionSequence.objects.filter(user=user, question=question).exists()
+
+
+def get_number_of_questions_in_user_sequence(user):
+    return SurveyUserQuestionSequence.objects.filter(user=user).count()
+
+
+def get_next_sequence_with_not_answered_question(user: SurveyUser, question_index: int):
+    questions_sequence = SurveyUserQuestionSequence.objects.filter(user=user,
+                                                has_been_answered=False).order_by("branch", "index")[:1]
+    if questions_sequence:
+        return questions_sequence[0]
+
+    return None
+
+
+def get_answered_question_sequence(user):
+    return SurveyUserQuestionSequence.objects.filter(user=user, has_been_answered=True).order_by("index")
+
+
+def mark_question_as_answered(user: SurveyUser, question_index: int):
+    user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user, index=question_index)[:1][0]
+    user_question_sequence.has_been_answered = True
+    user_question_sequence.save()
+
+
+def has_user_answered_on_the_question(user: SurveyUser, question: SurveyQuestion):
+    return SurveyUserQuestionSequence.objects.filter(user=user, question=question,
+                                                    has_user_answered_on_the_question=True).exists()
+
+
+def reindex_questions_sequence_order_from(user: SurveyUser, question_index: int):
+    questions_sequence = SurveyUserQuestionSequence.objects.filter(user=user,
+                                            index__gt=question_index).order_by("branch", "index")
+    increment = 1
+    for question_sequence in questions_sequence:
+        question_sequence.index = question_index + increment
+        increment += 1
+        question_sequence.save()
+
+
+def get_total_questions_number(user: SurveyUser, question_index: int):
+    branches_number = 5
+    if question_index > 1:
+        branches_number = SurveyUserQuestionSequence.objects.filter(user=user,
+                                            branch__isnull=False).values('branch').distinct().count()
+    total_questions_num = SurveyAnswerQuestionMap.objects.values('question').distinct().count()
+    total_questions_num = int(math.ceil(total_questions_num * 5 / branches_number))
+    if total_questions_num <= question_index:
+        total_questions_num = question_index + 1
+
+    return total_questions_num
