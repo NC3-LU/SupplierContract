@@ -69,6 +69,39 @@ INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "questio
 INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (23, 'Q009BACKUPA002', 20, 'daa729d6-db30-4e4b-b91c-6610f7287c3e', FALSE, 0);
 
 
+/* survey_surveyanswerquestionmap */
+-- 1st branch
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (1, 1, '31a93341-8df1-4bf9-93c6-377089be1756', 1, 1, 1); -- CR
+
+-- 2nd branch
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (2, 2, '96eba38d-5129-461e-986c-50e5dc3b479f', 1, 2, 1); -- Q002LOGMAINTENANCE
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (3, 2, '65a694eb-8043-4ba5-a515-ab986b00bf17', 2, 2, 1); -- dev sur mesure
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (4, 6, '5251e7ff-4560-4d7a-a624-a002e35ab753', 4, 2, 3); -- audit
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (5, 7, '5251e7ff-4560-4d7a-a624-a002e35ab753', 5, 2, 3); -- audit
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (6, 9, '5251e7ff-4560-4d7a-a624-a002e35ab753', 6, 2, 3); -- audit
+-- TODO: validate/solve the possible problem of order, this should before audit in case if true
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (7, 8, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', 3, 2, 2); -- RH
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (8, 11, '5251e7ff-4560-4d7a-a624-a002e35ab753', 7, 0, 3); -- RH -> audit (for every branch)
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (9, 10, '059a045d-c7ea-422f-8d42-288400349a51', 8, 0, 4); -- RH -> RH of branch 3 (for every branch)
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (10, 15, '31a93341-8df1-4bf9-93c6-377089be1756', 9, 0, 5); -- audit -> CR (for every branch)
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (11, 16, '31a93341-8df1-4bf9-93c6-377089be1756', 10, 0, 5); -- audit -> CR (for every branch)
+
+-- 3rd branch
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (12, 3, '059a045d-c7ea-422f-8d42-288400349a51', 1, 3, 1); -- Q005RH2
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (13, 12, '31a93341-8df1-4bf9-93c6-377089be1756', 2, 3, 2); -- Q005RH2 -> CR
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (14, 13, '31a93341-8df1-4bf9-93c6-377089be1756', 3, 3, 2); -- Q005RH2 -> CR
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (15, 14, '31a93341-8df1-4bf9-93c6-377089be1756', 4, 3, 2); -- Q005RH2 -> CR
+
+-- 4th branch
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (16, 4, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', 1, 4, 1); -- RH
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (17, 17, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', 2, 4, 2); -- CR -> Q008SERVICE
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (18, 18, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', 3, 4, 2); -- CR -> Q008SERVICE
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (19, 19, 'daa729d6-db30-4e4b-b91c-6610f7287c3e', 4, 4, 3); -- Q008SERVICE -> Q009BACKUP
+
+-- 5th branch
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (20, 5, '5251e7ff-4560-4d7a-a624-a002e35ab753', 1, 5, 5); -- audit
+
+
 /* survey_recommendations */
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC002_CHARTER', 'a', 'j', NULL, TRUE, 1);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC017_CAPACITY', 'a', 'j', NULL, TRUE, 1);
@@ -206,21 +239,21 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION006BACKUP', 'Backup', 'de', 'S');
 -- FR
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERAL', 'Veuillez décrire au mieux le projet qui sera sous-traité parmi les catégories suivantes :  ', 'fr', 'Q');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA001', 'Achat ou location de matériel, sans prestation de service. (ex. : serveur, matériel réseau, ordinateur, mobile, etc.)En cas d''achat de matériel et prestation de service, cocher également la case "Prestation de service"', 'fr', 'A');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA001', 'Achat ou location de matériel, sans prestation de service (ex. : serveur, matériel réseau, ordinateur, mobile, etc.). En cas d''achat de matériel et prestation de service, cocher également la case "Prestation de service"', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA002', 'Achat, location ou développement de logiciel. Tout type de prestations sur les logiciels (ex.: Maintenance, développement, etc.). Pour les logiciels en accès SaaS, veuillez cocher la case "Prestation de service"', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA003', 'Ressources humaines. Embauche d''une ou plusieurs personnes dans le projet (ex. : consultant, service de ménage, technicien, etc.)', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA004', 'Prestation de service. Délégation d’un service entier, notamment sur une infrastructure pouvant être gérée par un tiers (ex.: service de backup, cloud, SaaS, etc.)', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA005', 'Bâtiment. Tout élément se rapportant physiquement à un bâtiment (ex.: climatisation, etc.). Si le projet porte sur le périmètre d''accès physique et qu''il est lié à un logiciel, il faut également cocher la case "Achat, location ou développement de logiciel"', 'fr', 'A');
 
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q002LOGMAINTENANCE', '	Est-ce que de la maintenance à distance aura lieue ? ', 'fr', 'Q');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q002LOGMAINTENANCE', 'Est-ce que de la maintenance à distance aura lieue ? ', 'fr', 'Q');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q002LOGMAINTENANCEA001', 'Oui', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q002LOGMAINTENANCEA002', 'Non', 'fr', 'A');
 
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q003LOGDEV', 'Est-ce qu''il s''agit d''un développement sur mesure ? ', 'fr', 'Q');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q003LOGDEV', 'Est-ce qu''il s''agit d''un développement sur mesure ?', 'fr', 'Q');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q003LOGDEVA001', 'Oui', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q003LOGDEVA002', 'Non', 'fr', 'A');
 
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q004RH1', '	Est-ce que le projet utilisera des ressources humaines tierces ? ', 'fr', 'Q');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q004RH1', 'Est-ce que le projet utilisera des ressources humaines tierces ?', 'fr', 'Q');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q004RH1A001', 'Oui', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q004RH1A002', 'Non', 'fr', 'A');
 

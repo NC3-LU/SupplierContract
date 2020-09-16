@@ -136,11 +136,12 @@ class SurveyAnswerQuestionMap(models.Model):
 
     answer = models.ForeignKey(SurveyQuestionAnswer, on_delete=models.CASCADE)
     question = models.ForeignKey(SurveyQuestion, on_delete=models.CASCADE)
-    branch = models.SmallIntegerField(null=True)
+    branch = models.SmallIntegerField(null=False, default=0)
+    level = models.SmallIntegerField(null=False, default=1)
     order = models.IntegerField()
 
     class Meta:
-        unique_together = ("answer", "question")
+        unique_together = ("answer", "question", "branch")
 
     def __str__(self):
         return str(self.answer.id) + '_' + str(self.question.uuid)
@@ -201,7 +202,8 @@ class SurveyUserFeedback(models.Model):
 class SurveyUserQuestionSequence(models.Model):
     user = models.ForeignKey(SurveyUser, on_delete=models.CASCADE)
     question = models.ForeignKey(SurveyQuestion, on_delete=models.CASCADE)
-    branch = models.SmallIntegerField(null=True)
+    branch = models.SmallIntegerField(null=False, default=0)
+    level = models.SmallIntegerField(null=False, default=1)
     index = models.IntegerField(default=1)
     has_been_answered = models.BooleanField(default=False)
 

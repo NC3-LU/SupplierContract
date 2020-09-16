@@ -15,7 +15,8 @@ class Migration(migrations.Migration):
             name='SurveyUserQuestionSequence',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('branch', models.SmallIntegerField(null=True)),
+                ('branch', models.SmallIntegerField(null=False, default=0)),
+                ('level', models.SmallIntegerField(null=False, default=1)),
                 ('index', models.IntegerField(default=1)),
                 ('has_been_answered', models.BooleanField(default=False)),
                 ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='survey.SurveyQuestion')),
@@ -29,13 +30,14 @@ class Migration(migrations.Migration):
             name='SurveyAnswerQuestionMap',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('branch', models.SmallIntegerField(null=True)),
+                ('branch', models.SmallIntegerField(null=False, default=0)),
+                ('level', models.SmallIntegerField(null=False, default=1)),
                 ('order', models.IntegerField()),
                 ('answer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='survey.SurveyQuestionAnswer')),
                 ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='survey.SurveyQuestion')),
             ],
             options={
-                'unique_together': {('answer', 'question')},
+                'unique_together': {('answer', 'question', 'branch')},
             },
         ),
         migrations.RemoveField(
