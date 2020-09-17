@@ -185,7 +185,7 @@ def finish(request):
         recommendations[rx] = [x.replace("\n", "<br>") for x in recommendations[rx]]
 
     textLayout = {
-        "title": "Fit4Cybersecurity - " + TRANSLATION_UI["report"]["title"][user_lang],
+        "title": "SupplierContract - " + TRANSLATION_UI["report"]["title"][user_lang],
         "description": TRANSLATION_UI["report"]["description"][user_lang],
         "recommendations": recommendations,
         "user": user,

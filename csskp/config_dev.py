@@ -2,7 +2,7 @@ ALLOWED_HOSTS = []
 
 SECRET_KEY = "u__*p&-rrjtc4t)d)@5ybj_a#3=491=k6x[k[@ei#h7mb=-21k"
 
-HASH_KEY = b"hDs4HftKsu9OaxI9smHP-TmHv-8r7h-4xaEp0UYhI10-"
+HASH_KEY = b'oChk46exPcNQ_O82i6UUXidsZKnCFZRlP-42QrM4qBU='
 
 DEBUG = True
 
