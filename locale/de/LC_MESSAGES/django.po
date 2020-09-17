@@ -26,24 +26,24 @@ msgstr ""
 "starten Sie eine neue."
 
 #: templates/survey/base.html:16
-msgid "Fit4Cybersecurity a CASES self-assessment tool!"
-msgstr "Fit4Cybersecurity ein CASES-Selbstbewertungstool!"
+msgid "Supplier Contract an ANSSI-CASES self-assessment tool!"
+msgstr "Supplier Contract ein ANSSI-CASES-Selbstbewertungstool!"
 
 #: templates/survey/base.html:24
 msgid "images/logoFull-en.png"
 msgstr "images/logoFull-de.png"
 
 #: templates/survey/base.html:41 templates/survey/base.html:42
-msgid "A service provided by CASES.LU"
-msgstr "Ein Service von CASES.LU"
+msgid "A service provided by ANSSI and CASES.LU"
+msgstr "Ein Service von ANSSI und CASES.LU"
 
 #: templates/survey/base.html:48 templates/survey/base.html:49
 msgid "Source code on GitHub"
 msgstr "Quellcode auf GitHub"
 
 #: templates/survey/base.html:53
-msgid "Version of Fit4Cybersecurity"
-msgstr "Version von Fit4Cybersecurity"
+msgid "Version of Supplier Contract"
+msgstr "Version"
 
 #: templates/survey/base.html:60
 msgid "Terms of service"
@@ -54,19 +54,15 @@ msgid "Terms of Service"
 msgstr "Nutzungsbedingungen"
 
 #: templates/survey/index.html:17
-msgid "Welcome to the all new CASES self-assessment tool: Fit4Cybersecurity"
+msgid "Welcome to the all new self-assessment tool"
 msgstr ""
-"Willkommen beim brandneuen CASES-Tool zur Selbstbewertung: Fit4Cybersecurity"
+"Willkommen beim brandneuen Tool zur Selbstbewertung"
 
 #: templates/survey/index.html:18
 msgid ""
-"This survey will ask some questions and present some recommendations, based "
-"on your sector, company size and your answers. Keep in mind, that it is a "
-"self-assessment tool and that it only touches the surface of information "
-"security by giving a very basic maturity level estimate and some basic "
-"recommendations. And that due to the aforementioned reasons, we are not "
-"liable for the result or recommendation implementations."
+"This survey will ask some questions and present some recommendations, based on your answers. Keep in mind, that it is a self-assessment tool and that it only touches the surface of information security by giving some basic recommendations. And that due to the aforementioned reasons, we are not liable for the result or recommendation implementations."
 msgstr ""
+"Diese Umfrage wird einige Fragen stellen und einige Empfehlungen basierend auf Ihren Antworten präsentieren. Denken Sie daran, dass es sich um ein Selbstbewertungsinstrument handelt und dass es nur die Oberfläche der Informationssicherheit berührt, indem es einige grundlegende Empfehlungen gibt. Und dass wir aus den oben genannten Gründen nicht für das Ergebnis oder die Umsetzung von Empfehlungen haften."
 
 #: templates/survey/index.html:51
 msgid "Continue a previous survey"

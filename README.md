@@ -1,7 +1,8 @@
 # SupplierContract
+SupplierContract is a self-assessment tool developed by [CASES](https://www.cases.lu)
+to help business owners find a right service supplier and obtain a contract information.
 
-SupplierContract is a self-assessment tool by [CASES](https://www.cases.lu)
-to help business owners to write a contract including cybersecurity aspects.
+The official instance is available [here](https://contract-supplier.anssi.lu).
 
 
 ## Deployment
