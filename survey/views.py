@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.utils.translation import gettext as _
 from django import forms
 
+from survey.reporthelper import get_sections_list, createAndSendReport, get_recommendations
 from survey.viewLogic import (
     handle_start_survey,
     handle_question_answers_request,
@@ -11,7 +12,7 @@ from survey.viewLogic import (
     handle_general_feedback,
     get_current_user_question_index_from_sequence
 )
-from survey.reporthelper import calculateResult, createAndSendReport, getRecommendations
+
 from survey.globals import TRANSLATION_UI, MIN_ACCEPTABLE_SCORE, LANG_SELECT
 from survey.models import SurveyUser, SURVEY_STATUS_FINISHED
 from django.contrib import messages
@@ -169,17 +170,14 @@ def finish(request):
 
     user_lang = user.choosen_lang
 
-    # make survey readonly and show results.
-    # also needs saving here!
-    # show a "Thank you" and a "get your report" button
-
-    txt_score, radar_current, sections_list = calculateResult(user, user_lang)
+    #txt_score, radar_current, sections_list = calculateResult(user, user_lang)
+    sections_list = get_sections_list(user, user_lang)
 
     diagnostic_email_body = TRANSLATION_UI["report"]["request_diagnostic"][
         "email_body"
     ][user_lang]
 
-    recommendations = getRecommendations(user, user_lang)
+    recommendations = get_recommendations(user, user_lang)
     # To properly display breaking lines \n on html page.
     for rx in recommendations:
         recommendations[rx] = [x.replace("\n", "<br>") for x in recommendations[rx]]
@@ -190,10 +188,10 @@ def finish(request):
         "recommendations": recommendations,
         "user": user,
         "reportlink": "/survey/report",
-        "txtscore": txt_score,
+        #"txtscore": txt_score,
         "chartTitles": str(sections_list),
-        "chartlabelYou": TRANSLATION_UI["report"]["result"][user_lang],
-        "chartdataYou": str(radar_current),
+        #"chartlabelYou": TRANSLATION_UI["report"]["result"][user_lang],
+        #"chartdataYou": str(radar_current),
         "min_acceptable_score": MIN_ACCEPTABLE_SCORE,
         "available_langs": [lang[0] for lang in LANG_SELECT],
         "general_feedback_form": handle_general_feedback(user, request),
@@ -203,21 +201,21 @@ def finish(request):
 
     crypter = Fernet(HASH_KEY)
 
-    textLayout["translations"]["request_diagnostic"] = {
-        "title": TRANSLATION_UI["report"]["request_diagnostic"]["title"][user_lang],
-        "description": TRANSLATION_UI["report"]["request_diagnostic"]["description"][
-            user_lang
-        ],
-        "service_fee": TRANSLATION_UI["report"]["request_diagnostic"]["service_fee"][
-            user_lang
-        ],
-        "email_subject": TRANSLATION_UI["report"]["request_diagnostic"][
-            "email_subject"
-        ][user_lang],
-        "email_body": diagnostic_email_body.replace(
-            "{userId}", str(crypter.encrypt(user_id.encode("utf-8")))
-        ),
-    }
+    # textLayout["translations"]["request_diagnostic"] = {
+    #     "title": TRANSLATION_UI["report"]["request_diagnostic"]["title"][user_lang],
+    #     "description": TRANSLATION_UI["report"]["request_diagnostic"]["description"][
+    #         user_lang
+    #     ],
+    #     "service_fee": TRANSLATION_UI["report"]["request_diagnostic"]["service_fee"][
+    #         user_lang
+    #     ],
+    #     "email_subject": TRANSLATION_UI["report"]["request_diagnostic"][
+    #         "email_subject"
+    #     ][user_lang],
+    #     "email_body": diagnostic_email_body.replace(
+    #         "{userId}", str(crypter.encrypt(user_id.encode("utf-8")))
+    #     ),
+    # }
     textLayout["translations"]["txtdownload"] = TRANSLATION_UI["report"]["download"][
         user_lang
     ]

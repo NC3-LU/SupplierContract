@@ -10,23 +10,34 @@ from survey.models import (
     SurveyUserAnswer,
     Recommendations,
     TranslationKey,
+    SurveyUserQuestionSequence,
 )
+
 from survey.globals import TRANSLATION_UI
 from utils.radarFactory import radar_factory
 import matplotlib.pyplot as plt
+from collections import defaultdict
 
+def get_recommendations(user: SurveyUser, lang: str):
+    answered_questions = get_answered_questions_list(user)
 
-def getRecommendations(user: SurveyUser, lang: str):
-    allAnswers = SurveyQuestionAnswer.objects.all().order_by(
+    all_answers = SurveyQuestionAnswer.objects.filter(question__in=answered_questions).order_by(
         "question__qindex", "aindex"
     )
+    user_answers = defaultdict(list)
+    for answer in all_answers:
+        for i, answered_question in enumerate(answered_questions):
+            if answer.question.uuid == answered_question.uuid:
+                user_answers[i].append(answer)
+    user_answers = [item for k, v in sorted(user_answers.items()) for item in v]
+
     recommendations_translations = get_formatted_translations(lang, "R")
     categories_translations = get_formatted_translations(lang, "C")
 
-    finalReportRecs = {}
+    final_report_recs = {}
 
-    for a in allAnswers:
-        userAnswer = SurveyUserAnswer.objects.filter(user=user).filter(answer=a)[0]
+    for a in user_answers:
+        user_answer = SurveyUserAnswer.objects.filter(user=user, answer=a)[0]
         recommendations = Recommendations.objects.filter(forAnswer=a)
 
         if not recommendations.exists():
@@ -35,19 +46,19 @@ def getRecommendations(user: SurveyUser, lang: str):
         for rec in recommendations:
             if rec.min_e_count > user.e_count or rec.max_e_count < user.e_count:
                 continue
-            if (userAnswer.uvalue > 0 and rec.answerChosen) or (
-                userAnswer.uvalue <= 0 and not rec.answerChosen
+            if (user_answer.uvalue > 0 and rec.answerChosen) or (
+                user_answer.uvalue <= 0 and not rec.answerChosen
             ):
                 category_name = categories_translations[
                     rec.forAnswer.question.service_category.titleKey
                 ]
-                if category_name not in finalReportRecs:
-                    finalReportRecs[category_name] = []
-                finalReportRecs[category_name].append(
-                    recommendations_translations[rec.textKey]
-                )
+                if category_name not in final_report_recs:
+                    final_report_recs[category_name] = []
+                transalted_recommendation = recommendations_translations[rec.textKey]
+                if not transalted_recommendation in final_report_recs[category_name]:
+                    final_report_recs[category_name].append(transalted_recommendation)
 
-    return finalReportRecs
+    return final_report_recs
 
 
 def createAndSendReport(user: SurveyUser, lang: str):
@@ -112,7 +123,8 @@ def createAndSendReport(user: SurveyUser, lang: str):
     except:
         raise Exception("Missing file: {}".format(file_path))
 
-    score, details, section_list = calculateResult(user, lang)
+    #score, details, section_list = calculateResult(user, lang)
+    section_list = get_sections_list(user, lang)
 
     results = results.replace("\n\r", "\n")
     # results = results.replace("$$result$$", str(score))
@@ -125,28 +137,27 @@ def createAndSendReport(user: SurveyUser, lang: str):
             x += 1
 
             continue
-        if "$$result$$" in i:
-            i = i.split("$$result$$")
-            p = doc.add_paragraph()
-            ind = 1
-            for x in i:
-                p.add_run(x)
-                # p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                if ind < len(i):
-                    px = p.add_run(str(score))
-                    px.font.bold = True
-                ind += 1
-        else:
-            doc.add_paragraph(i)
+        # if "$$result$$" in i:
+        #     i = i.split("$$result$$")
+        #     p = doc.add_paragraph()
+        #     ind = 1
+        #     for x in i:
+        #         p.add_run(x)
+        #         if ind < len(i):
+        #             px = p.add_run(str(score))
+        #             px.font.bold = True
+        #         ind += 1
+        # else:
+        doc.add_paragraph(i)
 
-    try:
-        chart_png_file = generate_chart_png(user, details, section_list, lang)
-        doc.add_paragraph()
-        paragraph = doc.add_paragraph()
-        run = paragraph.add_run()
-        run.add_picture(chart_png_file)
-    except:
-        pass
+    # try:
+    #     chart_png_file = generate_chart_png(user, details, section_list, lang)
+    #     doc.add_paragraph()
+    #     paragraph = doc.add_paragraph()
+    #     run = paragraph.add_run()
+    #     run.add_picture(chart_png_file)
+    # except:
+    #     pass
 
     doc.add_paragraph()
 
@@ -189,9 +200,9 @@ def createAndSendReport(user: SurveyUser, lang: str):
     questions_translations = get_formatted_translations(lang, "Q")
     answers_translations = get_formatted_translations(lang, "A")
 
-    questions = SurveyQuestion.objects.all().order_by("qindex")
+    answered_questions = get_answered_questions_list(user)
 
-    for index, question in enumerate(questions):
+    for index, question in enumerate(answered_questions):
         table = doc.add_table(rows=1, cols=2)
         table.autofit = False
         hdr_cells = table.rows[0].cells
@@ -265,6 +276,19 @@ def createAndSendReport(user: SurveyUser, lang: str):
     return response
 
 
+def get_sections_list(user: SurveyUser, lang: str):
+    sections_list = []
+    answered_questions_sequences = get_answered_questions_sequences(user)
+    translation_key_values = get_formatted_translations(lang, "S")
+    for answered_question_sequence in answered_questions_sequences:
+        section_title = translation_key_values[answered_question_sequence.question.section.sectionTitleKey]
+        if section_title not in sections_list:
+            sections_list.append(section_title)
+
+    return sections_list
+
+
+"""
 def calculateResult(user: SurveyUser, lang: str):
     total_questions_score = 0
     total_user_score = 0
@@ -314,9 +338,9 @@ def calculateResult(user: SurveyUser, lang: str):
 
 
 def generate_chart_png(user: SurveyUser, evaluation, sections_list, lang):
-    """Generates the chart with Matplotlib and returns the path of the generated
-    graph which will be included in the report.
-    """
+    # Generates the chart with Matplotlib and returns the path of the generated
+    # graph which will be included in the report.
+
     n = len(sections_list)
     theta = radar_factory(n, frame="polygon")
 
@@ -365,6 +389,7 @@ def generate_chart_png(user: SurveyUser, evaluation, sections_list, lang):
         plt.close()
 
     return file_name
+"""
 
 
 def get_formatted_translations(lang: str, type: str):
@@ -374,3 +399,12 @@ def get_formatted_translations(lang: str, type: str):
         translation_key_values[translation.key] = translation.text
 
     return translation_key_values
+
+
+def get_answered_questions_list(user: SurveyUser):
+    return [i.question for i in get_answered_questions_sequences(user)]
+
+
+def get_answered_questions_sequences(user: SurveyUser):
+    return SurveyUserQuestionSequence.objects.filter(user=user,
+                                                    has_been_answered=True).order_by("branch", "level", "index")

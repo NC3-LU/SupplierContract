@@ -16,7 +16,7 @@ from survey.models import (
 )
 from survey.forms import InitialStartForm, AnswerMChoice, GeneralFeedback
 from survey.globals import LANG_SELECT, TRANSLATION_UI
-from survey.reporthelper import getRecommendations, get_formatted_translations
+from survey.reporthelper import get_recommendations, get_formatted_translations
 
 
 def create_user(lang: str, sector: str, company_size: str, country: str):
@@ -77,15 +77,6 @@ def handle_start_survey(request, lang: str):
 
 
 def handle_question_answers_request(request, user: SurveyUser, question_index: int):
-    # TODO:
-    # 1. we have current question from user, we can validate if it is the first one and no history (second is not mandatory)
-    # 2. if it is the first question and request is get, then we don't need to do anything extra, number of questions is not defined yet (the progress bar should be adjusted - removed numbers - 0 for now.)
-    # 3. in case if it is post and the question is first we create a record in history table and based on selected answers determine the next quedtion, previous = current, and total questions num (which is not 100% correct).
-    # 4. if the question is not the first one:
-    # 4. a) we validate if the current answer (with value 1) has a related questions sequence, and if yes, it should be completed first.
-    # 4. b) every time we validate the questions history if the firt answered question has a relation with answers and related to the answer sequesnce is completed.
-    # 5. We need to concider a different scenario in case if the question_index and current user question index are not the same (in case of post erase all the answers, sequence after the question index and rebuild based on the selected answers)
-
     current_sequence = get_sequence_by_user_and_index(user, question_index)
     current_question = current_sequence.question
 
@@ -291,7 +282,7 @@ def get_questions_with_user_answers(user: SurveyUser):
     questions_translations = get_formatted_translations(user.choosen_lang, "Q")
     answers_translations = get_formatted_translations(user.choosen_lang, "A")
 
-    answered_questions_sequence = get_answered_question_sequence(user)
+    answered_questions_sequences = get_answered_questions_sequences(user)
 
     user_feedbacks = SurveyUserFeedback.objects.filter(
         user=user, question__isnull=False
@@ -299,7 +290,7 @@ def get_questions_with_user_answers(user: SurveyUser):
     feedbacks_per_question = {}
     for user_feedback in user_feedbacks:
         question_index = user_feedback.question.qindex
-        for answered_question_sequence in answered_questions_sequence:
+        for answered_question_sequence in answered_questions_sequences:
             if answered_question_sequence.question.uuid == user_feedback.question.uuid:
                 question_index = answered_question_sequence.index
                 break
@@ -312,7 +303,7 @@ def get_questions_with_user_answers(user: SurveyUser):
             survey_user_answer.answer.question.titleKey
         ]
         question_index = survey_user_answer.answer.question.qindex
-        for answered_question_sequence in answered_questions_sequence:
+        for answered_question_sequence in answered_questions_sequences:
             if answered_question_sequence.question.uuid == survey_user_answer.answer.question.uuid:
                 question_index = answered_question_sequence.index
                 break
@@ -401,8 +392,9 @@ def get_next_sequence_with_not_answered_question(user: SurveyUser, question_inde
     return None
 
 
-def get_answered_question_sequence(user):
-    return SurveyUserQuestionSequence.objects.filter(user=user, has_been_answered=True).order_by("index")
+def get_answered_questions_sequences(user: SurveyUser):
+    return SurveyUserQuestionSequence.objects.filter(user=user,
+                                            has_been_answered=True).order_by("branch", "level", "index")
 
 
 def mark_question_as_answered(user: SurveyUser, question_index: int):
