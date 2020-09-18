@@ -12,6 +12,7 @@ from survey.models import (
     SurveyUserFeedback,
     SurveyAnswerQuestionMap,
     SurveyUserQuestionSequence,
+    SURVEY_STATUS_IN_PROGRESS,
     SURVEY_STATUS_UNDER_REVIEW,
 )
 from survey.forms import InitialStartForm, AnswerMChoice, GeneralFeedback
@@ -97,11 +98,15 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
             with transaction.atomic():
                 user = SurveyUser.objects.select_for_update(nowait=True).filter(id=user.id)[0]
                 answers = form.cleaned_data["answers"]
+
+                # TODO: show message that questions modification can lead to new questions or removing of your answers
+
                 # TODO: if not has_user_answered_on_the_question(user, current_question):
                 # TODO: we need to determine if the answers changed
                 #1 in case we modified previous answer, and it leads to add extra questions it is fine, we will get it:
                 #2 in case if we have to remove answers or add new ones then before save we check if the answers are updated and do the stuff.
-                save_answers(tuple_answers, answers, user, current_sequence.branch, question_index)
+
+                save_answers(tuple_answers, answers, user, current_sequence, question_index)
 
                 feedback = form.cleaned_data["feedback"]
                 if feedback:
@@ -117,11 +122,13 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
                     user_feedback.feedback = feedback
                     user_feedback.save()
 
-                mark_question_as_answered(user, question_index)
+                was_sequence_question_answered = current_sequence.has_been_answered
+                if not was_sequence_question_answered:
+                    current_sequence = mark_sequence_as_answered(current_sequence)
                 next_sequence = get_next_sequence_with_not_answered_question(user, question_index)
 
                 if next_sequence != None:
-                    if next_sequence.index != question_index + 1:
+                    if not was_sequence_question_answered and next_sequence.index != question_index + 1:
                         increment_questions_sequence_order_from(user, question_index, 0, 1)
                     user.current_question = next_sequence.question
                 else:
@@ -171,9 +178,11 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
     }
 
 
-def save_answers(answer_choices, answers, user: SurveyUser, current_branch: int, question_index: int):
+def save_answers(answer_choices, answers, user: SurveyUser,
+                current_sequence: SurveyUserQuestionSequence, question_index: int):
     existing_answer_ids = [int(i[0]) for i in answer_choices]
     user_answers = [int(i) for i in answers]
+    current_branch = current_sequence.branch
     for a in existing_answer_ids:
         answer = SurveyUserAnswer.objects.filter(user=user, answer__id=a)[:1]
         if not answer:
@@ -184,26 +193,46 @@ def save_answers(answer_choices, answers, user: SurveyUser, current_branch: int,
         else:
             answer = answer[0]
 
+        # for the fisrt question we take branch from the question number.
+        if question_index == 1:
+            current_branch = existing_answer_ids.index(a) + 1
+
+        is_answer_selected = a in user_answers
+        is_answer_changed = (answer.uvalue == 0 and is_answer_selected) or (
+                            answer.uvalue == 1 and not is_answer_selected)
+        # if we modify question and answer is changed.
+        if current_sequence.has_been_answered and is_answer_changed:
+            # in case if the answer is unselected.
+            if question_index == 1 and answer.uvalue == 1:
+                sequences_to_remove = SurveyUserQuestionSequence.objects.filter(user=user, branch=current_branch)
+                for sequence_to_remove in sequences_to_remove:
+                    SurveyUserAnswer.objects.filter(user=user, answer__question=sequence_to_remove.question).delete()
+                    has_user_question_be_reset = user.current_question.uuid == sequence_to_remove.question.uuid
+                    sequence_to_remove.delete()
+                    if has_user_question_be_reset:
+                        next_sequence = get_next_sequence_with_not_answered_question(user, question_index)
+                        if next_sequence == None:
+                            next_sequence = get_last_user_sequence(user)
+                        user.current_question = next_sequence.question
+
         answer.uvalue = 0
-        if a in user_answers:
+        if is_answer_selected:
             answer.uvalue = 1
-            # for the fisrt question we take branch from the question number.
-            if question_index == 1:
-                current_branch = existing_answer_ids.index(a) + 1
-            create_questions_sequence(user, answer.answer, current_branch, question_index)
+            if is_answer_changed:
+                create_questions_sequence(user, answer.answer, current_branch, question_index)
 
         answer.save()
 
 
 def create_questions_sequence(user: SurveyUser, question_answer: SurveyQuestionAnswer,
-                            current_branch: int, question_index: int):
+                                                current_branch: int, question_index: int):
     answer_questions_map = SurveyAnswerQuestionMap.objects.filter(answer=question_answer).order_by("order")
     number_of_questions_in_user_sequence = get_number_of_questions_in_user_sequence(user)
     for answer_question_map in answer_questions_map:
         sequence = get_sequence_by_user_and_question(user, answer_question_map.question)
 
         # in case if the question is already added in one of the futher branches.
-        if (sequence and sequence.branch > current_branch and (
+        if (sequence and not sequence.has_been_answered and sequence.branch > current_branch and (
                 not answer_question_map.branch or current_branch == answer_question_map.branch)
             ):
             increment_questions_sequence_order_from(user, question_index, sequence.index, 2)
@@ -217,7 +246,7 @@ def create_questions_sequence(user: SurveyUser, question_answer: SurveyQuestionA
                 not answer_question_map.branch or current_branch == answer_question_map.branch)
             ):
             number_of_questions_in_user_sequence += 1
-            save_question_sequence(user, answer_question_map.question,
+            save_question_sequence_and_validate_user_status(user, answer_question_map.question,
                                 number_of_questions_in_user_sequence, current_branch, answer_question_map.level)
             continue
 
@@ -227,11 +256,21 @@ def create_questions_sequence(user: SurveyUser, question_answer: SurveyQuestionA
                     branch__isnull=False).values('branch').distinct().values_list('branch', flat=True)
             if answer_question_map.branch in list(branches):
                 number_of_questions_in_user_sequence += 1
-                save_question_sequence(user, answer_question_map.question,
+                save_question_sequence_and_validate_user_status(user, answer_question_map.question,
                         number_of_questions_in_user_sequence, answer_question_map.branch, answer_question_map.level)
+                continue
+
+        # in case if we modify a question answer from 0 to 1 and related questions are already answered,
+        # but not in this branch so we go deeper through the answers
+        if sequence and sequence.branch != current_branch:
+            answers = SurveyUserAnswer.objects.filter(user=user, answer__question=sequence.question)
+            for answer in answers:
+                if answer.uvalue > 0:
+                    create_questions_sequence(user, answer.answer, current_branch, number_of_questions_in_user_sequence)
 
 
-def save_question_sequence(user: SurveyUser, question: SurveyQuestion, index: int, branch: int, level: int):
+def save_question_sequence_and_validate_user_status(user: SurveyUser, question: SurveyQuestion,
+                                                    index: int, branch: int, level: int):
     user_question_sequence = SurveyUserQuestionSequence()
     user_question_sequence.user = user
     user_question_sequence.question = question
@@ -239,6 +278,9 @@ def save_question_sequence(user: SurveyUser, question: SurveyQuestion, index: in
     user_question_sequence.branch = branch
     user_question_sequence.level = level
     user_question_sequence.save()
+    if user.status == SURVEY_STATUS_UNDER_REVIEW:
+        user.status = SURVEY_STATUS_IN_PROGRESS
+        user.save()
 
 
 def find_user_by_id(user_id):
@@ -397,10 +439,11 @@ def get_answered_questions_sequences(user: SurveyUser):
                                             has_been_answered=True).order_by("branch", "level", "index")
 
 
-def mark_question_as_answered(user: SurveyUser, question_index: int):
-    user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user, index=question_index)[:1][0]
-    user_question_sequence.has_been_answered = True
-    user_question_sequence.save()
+def mark_sequence_as_answered(sequence: SurveyUserQuestionSequence):
+    sequence.has_been_answered = True
+    sequence.save()
+
+    return sequence
 
 
 def has_user_answered_on_the_question(user: SurveyUser, question: SurveyQuestion):
@@ -430,3 +473,7 @@ def get_total_questions_number(user: SurveyUser, question_index: int):
         total_questions_num = question_index + 1
 
     return total_questions_num
+
+
+def get_last_user_sequence(user: SurveyUser):
+    return SurveyUserQuestionSequence.objects.filter(user=user).order_by('-index')[:1][0]

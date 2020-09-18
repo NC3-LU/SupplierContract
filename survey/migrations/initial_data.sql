@@ -82,7 +82,7 @@ INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", 
 -- TODO: validate/solve the possible problem of order, this should before audit in case if true
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (7, 8, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', 3, 2, 2); -- RH
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (8, 11, '5251e7ff-4560-4d7a-a624-a002e35ab753', 7, 0, 3); -- RH -> audit (for every branch)
-INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (9, 10, '059a045d-c7ea-422f-8d42-288400349a51', 8, 0, 4); -- RH -> RH of branch 3 (for every branch)
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (9, 10, '059a045d-c7ea-422f-8d42-288400349a51', 8, 0, 2); -- RH -> RH of branch 3 (for every branch)
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (10, 15, '31a93341-8df1-4bf9-93c6-377089be1756', 9, 0, 5); -- audit -> CR (for every branch)
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (11, 16, '31a93341-8df1-4bf9-93c6-377089be1756', 10, 0, 5); -- audit -> CR (for every branch)
 
@@ -285,7 +285,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q0
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA002', 'Purchase, rental or development of software. All types of software services (e.g. maintenance, development, etc.). For software with SaaS access, please check the box "Service provision".', 'en', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA003', 'Human Resources. Hiring of one or more people in the project (e.g.: consultant, cleaning service, technician, etc.).', 'en', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA004', 'Service provision. Delegation of an entire service, especially on an infrastructure that can be managed by a third party (e.g.: backup service, cloud, SaaS, etc.).', 'en', 'A');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA005', 'Building. Any element physically related to a building (e.g. air conditioning, etc.). If the project concerns the physical access perimeter and is related to software, the "Purchase, lease or software development" box must also be checked.Yes', 'en', 'A');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA005', 'Building. Any element physically related to a building (e.g. air conditioning, etc.). If the project concerns the physical access perimeter and is related to software, the "Purchase, lease or software development" box must also be checked.', 'en', 'A');
 
   INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q002LOGMAINTENANCE', 'Will remote maintenance be required? ', 'en', 'Q');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q002LOGMAINTENANCEA001', 'Yes', 'en', 'A');
@@ -321,7 +321,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q0
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q009BACKUPA001', 'The service includes the management of an own physical backup infrastructure.', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q009BACKUPA002', 'Data is stored in whole or in part on a cloud infrastructure', 'en', 'A');
 -- DE
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERAL', 'Bitte beschreiben Sie am besten das Projekt, für das ein Unterauftrag aus den folgenden Kategorien vergeben wird  :  ', 'de', 'Q');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERAL', 'Bitte beschreiben Sie am besten das Projekt, für das ein Unterauftrag aus den folgenden Kategorien vergeben wird:', 'de', 'Q');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA001', 'Kauf oder Miete von Ausrüstung, ohne Bereitstellung von Dienstleistungen. (z.B.: Server, Netzwerkausrüstung, Computer, Handy usw.) Beim Kauf von Ausrüstung und bei der Erbringung von Dienstleistungen kreuzen Sie bitte auch das Kästchen "Servicebereitstellung" an.', 'de', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA002', 'Kauf, Leasing oder Entwicklung von Software. Alle Arten von Software-Dienstleistungen (z.B. Wartung, Entwicklung usw.). Für Software mit SaaS-Zugang kreuzen Sie bitte das Kästchen "Servicebereitstellung" an.', 'de', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA003', 'Humanressourcen. Einstellung einer oder mehrerer Personen für das Projekt (z.B. Berater, Reinigungsdienst, Techniker usw.).', 'de', 'A');
