@@ -78,7 +78,7 @@ def change_lang(request, lang: str):
     user.save()
 
     if user.is_survey_in_progress():
-        return HttpResponseRedirect("/survey/question/" + str(user.current_qindex))
+        return HttpResponseRedirect("/survey/question/" + str(get_current_user_question_index_from_sequence(user)))
 
     if user.is_survey_under_review():
         return HttpResponseRedirect("/survey/review")
@@ -114,7 +114,7 @@ def review(request):
     if user.is_survey_finished():
         return HttpResponseRedirect("/survey/finish")
     elif user.is_survey_in_progress():
-        return HttpResponseRedirect("/survey/question/" + str(user.current_qindex))
+        return HttpResponseRedirect("/survey/question/" + str(get_current_user_question_index_from_sequence(user)))
 
     if request.method == "POST" and forms.Form(data=request.POST).is_valid():
         user.status = SURVEY_STATUS_FINISHED
