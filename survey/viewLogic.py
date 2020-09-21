@@ -1,6 +1,6 @@
 from django.utils.html import format_html, mark_safe
 from django.db import transaction
-from django.db.models import Count
+from django.db.models import Count, QuerySet
 import math
 
 from survey.models import (
@@ -99,13 +99,6 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
                 user = SurveyUser.objects.select_for_update(nowait=True).filter(id=user.id)[0]
                 answers = form.cleaned_data["answers"]
 
-                # TODO: show message that questions modification can lead to new questions or removing of your answers
-
-                # TODO: if not has_user_answered_on_the_question(user, current_question):
-                # TODO: we need to determine if the answers changed
-                #1 in case we modified previous answer, and it leads to add extra questions it is fine, we will get it:
-                #2 in case if we have to remove answers or add new ones then before save we check if the answers are updated and do the stuff.
-
                 save_answers(tuple_answers, answers, user, current_sequence, question_index)
 
                 feedback = form.cleaned_data["feedback"]
@@ -138,16 +131,18 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
 
                 return user
     else:
-        user_answers = SurveyUserAnswer.objects.filter(
-            user=user, answer__question=current_question, uvalue__gt=0
-        )
         selected_answers = []
-        for user_answer in user_answers:
-            selected_answers.append(user_answer.answer.id)
+        user_feedback = None
+        if current_sequence.has_been_answered:
+            user_answers = SurveyUserAnswer.objects.filter(
+                user=user, answer__question=current_question, uvalue__gt=0
+            )
+            for user_answer in user_answers:
+                selected_answers.append(user_answer.answer.id)
 
-        user_feedback = SurveyUserFeedback.objects.filter(
-            user=user, question=current_question
-        )[:1]
+            user_feedback = SurveyUserFeedback.objects.filter(
+                user=user, question=current_question
+            )[:1]
 
         form = AnswerMChoice(
             tuple_answers,
@@ -175,6 +170,7 @@ def handle_question_answers_request(request, user: SurveyUser, question_index: i
         "previous_question_index": question_index - 1,
         "total_questions_num": get_total_questions_number(user, question_index),
         "available_langs": [lang[0] for lang in LANG_SELECT],
+        "has_question_answered": current_sequence.has_been_answered,
     }
 
 
@@ -200,20 +196,9 @@ def save_answers(answer_choices, answers, user: SurveyUser,
         is_answer_selected = a in user_answers
         is_answer_changed = (answer.uvalue == 0 and is_answer_selected) or (
                             answer.uvalue == 1 and not is_answer_selected)
-        # if we modify question and answer is changed.
-        if current_sequence.has_been_answered and is_answer_changed:
-            # in case if the answer is unselected.
-            if question_index == 1 and answer.uvalue == 1:
-                sequences_to_remove = SurveyUserQuestionSequence.objects.filter(user=user, branch=current_branch)
-                for sequence_to_remove in sequences_to_remove:
-                    SurveyUserAnswer.objects.filter(user=user, answer__question=sequence_to_remove.question).delete()
-                    has_user_question_be_reset = user.current_question.uuid == sequence_to_remove.question.uuid
-                    sequence_to_remove.delete()
-                    if has_user_question_be_reset:
-                        next_sequence = get_next_sequence_with_not_answered_question(user, question_index)
-                        if next_sequence == None:
-                            next_sequence = get_last_user_sequence(user)
-                        user.current_question = next_sequence.question
+        # if we modify the question and answer is unselected.
+        if current_sequence.has_been_answered and is_answer_changed and answer.uvalue == 1:
+            remove_questions_sequences(user, answer.answer, question_index, current_branch)
 
         answer.uvalue = 0
         if is_answer_selected:
@@ -267,6 +252,47 @@ def create_questions_sequence(user: SurveyUser, question_answer: SurveyQuestionA
             for answer in answers:
                 if answer.uvalue > 0:
                     create_questions_sequence(user, answer.answer, current_branch, number_of_questions_in_user_sequence)
+
+
+def remove_questions_sequences(user: SurveyUser, questionAnswer: SurveyQuestionAnswer,
+                                                question_index: int, current_branch: int):
+    sequences_to_remove = []
+    sequences_to_validate = SurveyUserQuestionSequence.objects.filter(user=user,
+                                        branch=current_branch, index__gt=question_index)
+    for sequence_to_validate in sequences_to_validate:
+        other_user_answers = SurveyUserAnswer.objects.filter(user=user, uvalue__gt=0).exclude(
+                                                            answer=questionAnswer).order_by('id')
+        if not is_question_referenced_to_user_answers(user, other_user_answers, sequence_to_validate.question):
+            sequences_to_remove.append(sequence_to_validate)
+
+    for sequence_to_remove in sequences_to_remove:
+        SurveyUserAnswer.objects.filter(user=user, answer__question=sequence_to_remove.question).delete()
+        has_user_question_be_reset = user.current_question.uuid == sequence_to_remove.question.uuid
+        increment_questions_sequence_order_from(user, sequence_to_remove.index, 0, 0)
+        sequence_to_remove.delete()
+        if has_user_question_be_reset:
+            next_sequence = get_next_sequence_with_not_answered_question(user, question_index)
+            if next_sequence == None:
+                next_sequence = get_last_user_sequence(user)
+            user.current_question = next_sequence.question
+
+
+def is_question_referenced_to_user_answers(user: SurveyUser, user_answers: QuerySet, question: SurveyQuestion):
+    for user_answer in user_answers:
+        answer_questions_map = SurveyAnswerQuestionMap.objects.filter(answer=user_answer.answer, question=question)
+        for answer_question_map in answer_questions_map:
+            if not answer_question_map:
+                continue
+
+            if not answer_question_map.branch:
+                return True
+
+            branches = SurveyUserQuestionSequence.objects.filter(user=user,
+                    branch__isnull=False).values('branch').distinct().values_list('branch', flat=True)
+            if answer_question_map.branch in list(branches):
+                return True
+
+    return False
 
 
 def save_question_sequence_and_validate_user_status(user: SurveyUser, question: SurveyQuestion,
@@ -458,7 +484,7 @@ def increment_questions_sequence_order_from(user: SurveyUser, question_index: in
         questions_sequence = questions_sequence.filter(index__lt=index_limit)
     for question_sequence in questions_sequence:
         question_sequence.index = question_index + increment
-        increment += 1
+        question_index += 1
         question_sequence.save()
 
 

@@ -25,7 +25,7 @@
 
     <div class="m-2 p-3">
         <div class="card-title">{{ question }}</div>
-        <form action="{{ action }}" method="post" class="form">
+        <form action="{{ action }}" method="post" class="form" id="survey-question-form">
             {% csrf_token %}
 
             {% bootstrap_form form exclude="feedback" %}
@@ -45,7 +45,7 @@
                             <button class="btn btn-primary cancel-modifications" data-question-index="{{ current_question_index }}" type="button">{{ translations.cancel_button }}</button>
                         {% endif %}
                         <button class="btn btn-light border border-rounded" type="button" name="continue-later" data-toggle="modal" data-target="#modal">{{ translations.continue_later.button }}</button>
-                        <input class="btn btn-primary" type="submit" value="{% if user.is_survey_in_progress %}{{ translations.next_button }}{% else %}{{ translations.modify_button }}{% endif %}" data-question-index="{{ current_question_index }}">
+                        <input class="btn btn-primary{% if has_question_answered %} modify-question{% endif %}" type="submit" value="{% if not has_question_answered %}{{ translations.next_button }}{% else %}{{ translations.modify_button }}{% endif %}" data-question-index="{{ current_question_index }}">
                     </div>
                 </div>
             {% endbuttons %}
@@ -64,4 +64,7 @@
 
     {% include 'survey/continue.html' %}
     {% include 'survey/leaveSurvey.html' %}
+    {% if has_question_answered %}
+        {% include 'survey/answerChangingWarning.html' %}
+    {% endif %}
 {% endblock %}

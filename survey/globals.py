@@ -233,6 +233,15 @@ TRANSLATION_UI = {
             "fr": "Veuillez ne fournir aucune donnée sensible ou confidentielle faisant référence à votre identité.",
             "de": "Bitte geben Sie keine sensiblen oder vertraulichen Datenan, die Ihre Identität veraten könnte.",
         },
+        "answer_changing_warning": {
+            "title": {
+                "en": "Change of previously selected answer(s) can lead to additional questions or loosing of your answer(s). Would you like to proceed?",
+                "fr": "Le changement de réponse(s) précédemment sélectionnée(s) peut conduire à des questions supplémentaires ou à la perte de vos réponses. Voulez vous procéder?",
+                "de": "Eine Änderung der zuvor ausgewählten Antwort(en) kann zu zusätzlichen Fragen oder zum Verlust Ihrer Antwort(en) führen. Möchten Sie fortfahren?",
+            },
+            "yes": {"en": "Yes", "fr": "Oui", "de": "Ja",},
+            "no": {"en": "No", "fr": "Non", "de": "Nein",},
+        }
     },
     "review": {
         "title": {

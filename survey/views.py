@@ -303,12 +303,8 @@ def add_form_translations(data, lang: str, topic="question"):
             "button": TRANSLATION_UI[topic]["continue_later"]["button"][lang],
             "title": TRANSLATION_UI[topic]["continue_later"]["title"][lang],
             "text": TRANSLATION_UI[topic]["continue_later"]["text"][lang],
-            "button_download": TRANSLATION_UI[topic]["continue_later"][
-                "button_download"
-            ][lang],
-            "button_close": TRANSLATION_UI[topic]["continue_later"]["button_close"][
-                lang
-            ],
+            "button_download": TRANSLATION_UI[topic]["continue_later"]["button_download"][lang],
+            "button_close": TRANSLATION_UI[topic]["continue_later"]["button_close"][lang],
         },
         "leave_survey": {
             "title": TRANSLATION_UI[topic]["leave_survey"]["title"][lang],
@@ -322,27 +318,20 @@ def add_form_translations(data, lang: str, topic="question"):
     if "back_button" in TRANSLATION_UI[topic]:
         data["translations"]["back_button"] = TRANSLATION_UI[topic]["back_button"][lang]
     if "modify_button" in TRANSLATION_UI[topic]:
-        data["translations"]["modify_button"] = TRANSLATION_UI[topic]["modify_button"][
-            lang
-        ]
+        data["translations"]["modify_button"] = TRANSLATION_UI[topic]["modify_button"][lang]
     if "cancel_button" in TRANSLATION_UI[topic]:
-        data["translations"]["cancel_button"] = TRANSLATION_UI[topic]["cancel_button"][
-            lang
-        ]
+        data["translations"]["cancel_button"] = TRANSLATION_UI[topic]["cancel_button"][lang]
     if "select_multi_descr" in TRANSLATION_UI[topic]:
-        data["translations"]["select_multi_descr"] = TRANSLATION_UI[topic][
-            "select_multi_descr"
-        ][lang]
-    if (
-        "feedback_descr1" in TRANSLATION_UI[topic]
-        and "feedback_descr2" in TRANSLATION_UI[topic]
-    ):
-        data["translations"]["feedback_descr1"] = TRANSLATION_UI[topic][
-            "feedback_descr1"
-        ][lang]
-        data["translations"]["feedback_descr2"] = TRANSLATION_UI[topic][
-            "feedback_descr2"
-        ][lang]
+        data["translations"]["select_multi_descr"] = TRANSLATION_UI[topic]["select_multi_descr"][lang]
+    if ("feedback_descr1" in TRANSLATION_UI[topic] and "feedback_descr2" in TRANSLATION_UI[topic]):
+        data["translations"]["feedback_descr1"] = TRANSLATION_UI[topic]["feedback_descr1"][lang]
+        data["translations"]["feedback_descr2"] = TRANSLATION_UI[topic]["feedback_descr2"][lang]
+    if "answer_changing_warning" in TRANSLATION_UI[topic]:
+        data["translations"]["answer_changing_warning"] = {
+            "title": TRANSLATION_UI[topic]["answer_changing_warning"]["title"][lang],
+            "yes": TRANSLATION_UI[topic]["answer_changing_warning"]["yes"][lang],
+            "no": TRANSLATION_UI[topic]["answer_changing_warning"]["no"][lang],
+        }
 
 
 def get_terms(request):

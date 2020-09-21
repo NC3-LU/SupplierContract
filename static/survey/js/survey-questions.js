@@ -108,7 +108,7 @@ $(document).ready(function() {
             $(this).css('width', 'auto');
         });
 
-    var qrcodes = $('.qrcode');
+    let qrcodes = $('.qrcode');
     if (qrcodes.length > 0) {
         qrcodes.each(function() {
             var qrcode = new QRCode(this, {
@@ -119,4 +119,42 @@ $(document).ready(function() {
             qrcode.makeCode($('#direct-link').data('link'));
         });
     }
+
+    let isAnswerChanged = false;
+    if ($('.radio-buttons.form-check-input').length > 0) {
+        let initial_radio_val = $('.radio-buttons.form-check-input:checked').val();
+        $('.radio-buttons.form-check-input').change(function() {
+            if ($('.radio-buttons.form-check-input:checked').val() != initial_radio_val) {
+                isAnswerChanged = true;
+            } else {
+                isAnswerChanged = false;
+            }
+        });
+    }
+    if ($('.multiple-selection.form-check-input').length > 0) {
+        let initiallySelectedValues = [];
+        $.each($(".multiple-selection.form-check-input:checked"), function() {
+            initiallySelectedValues.push($(this).val());
+        });
+        $('.multiple-selection.form-check-input').change(function() {
+            let currentlySelectedValues = [];
+            $.each($(".multiple-selection.form-check-input:checked"), function() {
+                currentlySelectedValues.push($(this).val());
+            });
+            isAnswerChanged = currentlySelectedValues.length !== initiallySelectedValues.length ||
+                !currentlySelectedValues.every((v, i) => v === initiallySelectedValues[i])
+        });
+    }
+
+    $('.modify-question').click(function(event) {
+        event.preventDefault();
+        if (isAnswerChanged) {
+            $("#modal-asnwer-changing-warning").modal();
+            $('#submit-form').click(function() {
+                $('#survey-question-form').submit();
+            })
+        } else {
+            $('#survey-question-form').submit();
+        }
+    })
 });
