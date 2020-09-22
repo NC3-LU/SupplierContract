@@ -195,11 +195,11 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SE
 -- EN
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT001GENERAL', 'General', 'en', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT002LOGMAINTENANCE', 'Software Maintenance', 'en', 'C');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT003LOGDEV', 'Software development', 'en', 'C');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT004RH1', 'HR attendance', 'en', 'C');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT003LOGDEV', 'Software Development', 'en', 'C');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT004RH1', 'HR Presence', 'en', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT005RH2', 'HR Interactions', 'en', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT006AUDIT', 'Audit', 'en', 'C');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT007REGL', 'Regulatory constraints', 'en', 'C');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT007REGL', 'Regulatory Constraints', 'en', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT008SERVICE', 'Service', 'en', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT009BACKUP', 'Backup', 'en', 'C');
 -- DE
@@ -224,7 +224,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SE
 -- EN
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION001GENERAL', 'Service description', 'en', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION002LOGICIEL', 'Software', 'en', 'S');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION003RH', 'human resources', 'en', 'S');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION003RH', 'Human resources', 'en', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION004AUDIT', 'Audit', 'en', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION005CONTRAINTESREGL', 'Regulatory constraints', 'en', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION006SERVICE', 'Service', 'en', 'S');
@@ -238,7 +238,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION006SERVICE', 'Service', 'de', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION006BACKUP', 'Backup', 'de', 'S');
 -- FR
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERAL', 'Veuillez décrire au mieux le projet qui sera sous-traité parmi les catégories suivantes :  ', 'fr', 'Q');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERAL', 'Veuillez décrire au mieux le projet qui sera sous-traité parmi les catégories suivantes:', 'fr', 'Q');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA001', 'Achat ou location de matériel, sans prestation de service (ex. : serveur, matériel réseau, ordinateur, mobile, etc.). En cas d''achat de matériel et prestation de service, cocher également la case "Prestation de service"', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA002', 'Achat, location ou développement de logiciel. Tout type de prestations sur les logiciels (ex.: Maintenance, développement, etc.). Pour les logiciels en accès SaaS, veuillez cocher la case "Prestation de service"', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA003', 'Ressources humaines. Embauche d''une ou plusieurs personnes dans le projet (ex. : consultant, service de ménage, technicien, etc.)', 'fr', 'A');
@@ -280,46 +280,46 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q0
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q009BACKUPA002', 'Les données sont stockées en partie ou en totalité sur une infrastructure cloud', 'fr', 'A');
 
 -- EN
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERAL', 'Please describe the project that will be subcontracted from among the following categories:  ', 'en', 'Q');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA001', 'Purchase or rental of equipment, without provision of service. (e.g.: server, network equipment, computer, mobile, etc.) In case of purchase of equipment and provision of service, also check the box "Provision of service".', 'en', 'A');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA002', 'Purchase, rental or development of software. All types of software services (e.g. maintenance, development, etc.). For software with SaaS access, please check the box "Service provision".', 'en', 'A');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA003', 'Human Resources. Hiring of one or more people in the project (e.g.: consultant, cleaning service, technician, etc.).', 'en', 'A');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA004', 'Service provision. Delegation of an entire service, especially on an infrastructure that can be managed by a third party (e.g.: backup service, cloud, SaaS, etc.).', 'en', 'A');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA005', 'Building. Any element physically related to a building (e.g. air conditioning, etc.). If the project concerns the physical access perimeter and is related to software, the "Purchase, lease or software development" box must also be checked.', 'en', 'A');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERAL', 'Please describe the project that will be subcontracted among the following categories:', 'en', 'Q');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA001', 'Purchasing or renting of equipment, without provision of the service (e.g. server, network equipment, computer, mobile, etc.). In case of purchase of equipment and provision of the service, also check the box "Provision of service".', 'en', 'A');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA002', 'Purchasing, renting or developing of software. All types of software services (e.g. maintenance, development etc.). For software with SaaS access, please check the box "Service provision".', 'en', 'A');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA003', 'Human resources. Hiring of one or more people in the project (e.g. consultant, cleaning service, technician etc.).', 'en', 'A');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA004', 'Service provision. Delegation of an entire service, especially on an infrastructure that can be managed by a third party (e.g. backup service, cloud, SaaS etc.).', 'en', 'A');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA005', 'Building. Any element physically related to a building (e.g. air conditioning etc.). If the project concerns the physical access perimeter and is related to software, the "Purchase, lease or software development" box must also be checked.', 'en', 'A');
 
-  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q002LOGMAINTENANCE', 'Will remote maintenance be required? ', 'en', 'Q');
+  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q002LOGMAINTENANCE', 'Will remote maintenance be required?', 'en', 'Q');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q002LOGMAINTENANCEA001', 'Yes', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q002LOGMAINTENANCEA002', 'No', 'en', 'A');
 
-  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q003LOGDEV', 'Is it a tailor-made development? ', 'en', 'Q');
+  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q003LOGDEV', 'Is it a tailor-made development?', 'en', 'Q');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q003LOGDEVA001', 'Yes', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q003LOGDEVA002', 'No', 'en', 'A');
 
-  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q004RH1', 'Will the project use third party human resources? ', 'en', 'Q');
+  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q004RH1', 'Will the project use third party human resources?', 'en', 'Q');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q004RH1A001', 'Yes', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q004RH1A002', 'No', 'en', 'A');
 
-  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2', 'Can you describe the interaction of this (these) person(s) with your organization? ', 'en', 'Q');
+  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2', 'Could you describe the interaction of the person(s) with your organization?', 'en', 'Q');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2A001', 'They will work remotely', 'en', 'A');
-      INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2A002', 'They will have access to the building ', 'en', 'A');
+      INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2A002', 'They will have access to the building', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2A003', 'They will have a logical access to the information system', 'en', 'A');
 
-  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDIT', 'Will the service have to be audited?', 'en', 'Q');
+  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDIT', 'Will the service be audited?', 'en', 'Q');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA001', 'Yes', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA002', 'No', 'en', 'A');
 
-  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGL', 'Is the project subject to any legal or contractual requirements (GDPR, etc.)?', 'en', 'Q');
+  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGL', 'Is the project subject to any legal or contractual requirements (GDPR, etc.) ?', 'en', 'Q');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGLA001', 'Yes', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGLA002', 'No', 'en', 'A');
 
-  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICE', 'Will any of the following be subcontracted : ', 'en', 'Q');
+  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICE', 'Will any of the following be subcontracted:', 'en', 'Q');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICEA001', 'Backup ', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICEA002', 'Communication services', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICEA003', 'Cloud', 'en', 'A');
 
-  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q009BACKUP', 'Can you describe the backup service', 'en', 'Q');
+  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q009BACKUP', 'Could you describe the backup service.', 'en', 'Q');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q009BACKUPA001', 'The service includes the management of an own physical backup infrastructure.', 'en', 'A');
-      INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q009BACKUPA002', 'Data is stored in whole or in part on a cloud infrastructure', 'en', 'A');
+      INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q009BACKUPA002', 'Data is stored in whole or part of a cloud infrastructure.', 'en', 'A');
 -- DE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERAL', 'Bitte beschreiben Sie am besten das Projekt, für das ein Unterauftrag aus den folgenden Kategorien vergeben wird:', 'de', 'Q');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q001GENERALA001', 'Kauf oder Miete von Ausrüstung, ohne Bereitstellung von Dienstleistungen. (z.B.: Server, Netzwerkausrüstung, Computer, Handy usw.) Beim Kauf von Ausrüstung und bei der Erbringung von Dienstleistungen kreuzen Sie bitte auch das Kästchen "Servicebereitstellung" an.', 'de', 'A');
@@ -397,14 +397,14 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('RE
 
 -- EN
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC001_RH', 'A screening of an external collaborator is carried out before hiring. When the external collaborator leaves, a procedure ensures that the latter returns all the goods lent by the client''s organization (equipment, laptop, keys, badges, smartphone, etc.).', 'en', 'R');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC002_CHARTER', 'The Provider adheres to the security practices of the Customer''s organization and communicates any situations where such adherence is not possible, to help prevent security gaps or conflicts that could adversely affect security performance. Security practices should be formalized in a charter of good conduct for information systems security. ', 'en', 'R');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC003_TELEWORKING', 'The modalities of a remote work or maintenance are formalized. The technical and organizational security system and measures put in place by the service provider are validated by the customer.', 'en', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC002_CHARTER', 'The provider adheres to the security practices of the customer''s organization and communicates any situation where such adherence is not possible, to help preventing security gaps or conflicts that could adversely affect security performance. Security practices should be formalized in a charter of good conduct for information systems security. ', 'en', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC003_TELEWORKING', 'The modalities of a remote work or maintenance are formalized. The technical and organizational security system and measures put in place by the service provider and validated by the customer.', 'en', 'R');
 
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC004_EQUIPMAINT', 'The methods and frequency of maintenance of the infrastructure and the methods of intervention for maintenance and troubleshooting are managed by established procedures.', 'en', 'R');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC041_EQUIPREBUT', 'When hardware is reused or discarded, customer data and licensed software is erased or its storage medium is irreversibly destroyed and documented.', 'en', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC041_EQUIPREBUT', 'When hardware is reused or discarded, customer data and licensed software are erased or its storage medium is irreversibly destroyed and documented.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC005_AUTHFCT', 'When hardware is reused or discarded, customer data and licensed software is erased or its storage medium is irreversibly destroyed and documented.', 'en', 'R');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC0051_IDENTIFY', 'Users or processes accessing an outsourced information system or software are identified.', 'en', 'R');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC006_LOGICAL', 'Authentication and authorization for user or process access to the information system or outsourced software are managed according to an established procedure.', 'en', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC0051_IDENTIFY', 'Users or processes of accessing an outsourced information systems or software are identified.', 'en', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC006_LOGICAL', 'Authentication and authorization of users or processes of accessing to the information systems or outsourced software are managed according to an established procedure.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC007_SECPHY', 'The physical access of the provider to a building, premises or infrastructure is managed according to an established procedure. The means of access given to the service provider are inventoried and recovered at the end of the execution of the contract.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC008_SOFTWMAINT', 'The modalities and frequency of maintenance or update of the software or operating system are managed according to an established procedure.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC009_LOGDEV', 'The contract takes into account the specificities related to software developments such as licenses.  The contract also defines the best practice guidelines (e.g. OWASP) to be followed during development.', 'en', 'R');
@@ -420,7 +420,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('RE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC016_AUDIT', 'The contract provides for the right to audit security controls periodically, or at the time of significant changes in the subcontracting relationship.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC017_CAPACITY', 'The technical and financial capacities of the service provider are checked to ensure proper execution of the contract.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC018_CASCADE', 'The service provider guarantees, within its own supply chain or in the case of cascade subcontracting, compliance with the security requirements demanded by the customer.', 'en', 'R');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC021_PORT', 'The contract defines the terms and conditions for data recovery. In particular, the data can be retrieved in a common format (e.g. text, json, XML, etc.), or defined in advance to be re-imported into another system.', 'en', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC021_PORT', 'The contract defines the terms and conditions for data recovery. In particular, the data can be retrieved in a common format (e.g. text, json, XML etc.), or defined in advance to be re-imported into another system.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC022_VULNRESP', 'The provider provides timely and appropriate treatment for known vulnerabilities that may impact the client''s business.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC023_CHANGE', 'The provider informs the client''s organization in a timely manner of changes in its environment that may impact the client organization''s activities. Depending on the impact, the provider plans these changes in consultation with the client.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC024_SLA', 'The provider guarantees the minimum service levels defined in the contract. The Service Provider shall inform the Customer''s organization of its plans to ensure service levels under normal conditions and during disruptive events, whether such events occur on the premises or infrastructure of the Customer''s organization or the Service Provider.', 'en', 'R');
