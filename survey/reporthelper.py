@@ -52,13 +52,24 @@ def get_recommendations(user: SurveyUser, lang: str):
                 category_name = categories_translations[
                     rec.forAnswer.question.service_category.titleKey
                 ]
+                transalted_recommendation = recommendations_translations[rec.textKey]
+                if is_recommendation_already_added(transalted_recommendation, final_report_recs):
+                    continue
+
                 if category_name not in final_report_recs:
                     final_report_recs[category_name] = []
-                transalted_recommendation = recommendations_translations[rec.textKey]
-                if not transalted_recommendation in final_report_recs[category_name]:
-                    final_report_recs[category_name].append(transalted_recommendation)
+                final_report_recs[category_name].append(transalted_recommendation)
 
     return final_report_recs
+
+
+def is_recommendation_already_added(recommendation: str, recommendations: dict):
+    if recommendations:
+        for category, recommendations_per_category in recommendations.items():
+            if recommendation in recommendations_per_category:
+                return True
+
+    return False
 
 
 def createAndSendReport(user: SurveyUser, lang: str):
