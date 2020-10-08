@@ -27,6 +27,7 @@ body {
 }
 .footer a{
     color: #FFFFFF;
+    line-height: 5px;
 }
 #ie-warning {
     display: none;
