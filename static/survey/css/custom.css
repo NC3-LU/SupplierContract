@@ -25,9 +25,18 @@ body {
   line-height: 40px; /* Vertically center the text there */
   background-color: #006FBA;
 }
-.footer a{
+.footer a {
     color: #FFFFFF;
     line-height: 5px;
+}
+.footer .width-70 {
+    width: 70%;
+}
+.footer .align-center {
+    margin: auto;
+}
+.footer .right {
+    float: right;
 }
 #ie-warning {
     display: none;

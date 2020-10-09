@@ -211,7 +211,7 @@ def save_answers(answer_choices, answers, user: SurveyUser,
 
 def create_questions_sequence(user: SurveyUser, question_answer: SurveyQuestionAnswer,
                                                 current_branch: int, question_index: int):
-    answer_questions_map = SurveyAnswerQuestionMap.objects.filter(answer=question_answer).order_by("order")
+    answer_questions_map = SurveyAnswerQuestionMap.objects.filter(answer=question_answer).order_by("branch", "order")
     number_of_questions_in_user_sequence = get_number_of_questions_in_user_sequence(user)
     for answer_question_map in answer_questions_map:
         sequence = get_sequence_by_user_and_question(user, answer_question_map.question)

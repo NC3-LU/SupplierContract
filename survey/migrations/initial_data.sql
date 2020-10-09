@@ -37,35 +37,35 @@ INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "ser
 
 /* survey_surveyquestionanswer */
 INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (1, 'Q001GENERALA001', 10, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 0);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (2, 'Q001GENERALA002', 20, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 15);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (3, 'Q001GENERALA003', 30, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 5);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (4, 'Q001GENERALA004', 40, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 10);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (5, 'Q001GENERALA005', 50, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 5);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (2, 'Q001GENERALA002', 20, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (3, 'Q001GENERALA003', 30, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (4, 'Q001GENERALA004', 40, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (5, 'Q001GENERALA005', 50, '070946ca-abb0-44d0-b4b5-04c3155b78a9', FALSE, 0);
 
 INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (6, 'Q002LOGMAINTENANCEA001', 10, '96eba38d-5129-461e-986c-50e5dc3b479f', TRUE, 0);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (7, 'Q002LOGMAINTENANCEA002', 20, '96eba38d-5129-461e-986c-50e5dc3b479f', TRUE, 10);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (7, 'Q002LOGMAINTENANCEA002', 20, '96eba38d-5129-461e-986c-50e5dc3b479f', TRUE, 0);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (8, 'Q003LOGDEVA001', 10, '65a694eb-8043-4ba5-a515-ab986b00bf17', TRUE, 15);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (9, 'Q003LOGDEVA002', 20, '65a694eb-8043-4ba5-a515-ab986b00bf17', TRUE, 5);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (8, 'Q003LOGDEVA001', 10, '65a694eb-8043-4ba5-a515-ab986b00bf17', TRUE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (9, 'Q003LOGDEVA002', 20, '65a694eb-8043-4ba5-a515-ab986b00bf17', TRUE, 0);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (10, 'Q004RH1A001', 10, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', TRUE, 15);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (11, 'Q004RH1A002', 20, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', TRUE, 15);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (10, 'Q004RH1A001', 10, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', TRUE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (11, 'Q004RH1A002', 20, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', TRUE, 0);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (12, 'Q005RH2A001', 10, '059a045d-c7ea-422f-8d42-288400349a51', FALSE, 35);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (13, 'Q005RH2A002', 20, '059a045d-c7ea-422f-8d42-288400349a51', FALSE, 15);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (12, 'Q005RH2A001', 10, '059a045d-c7ea-422f-8d42-288400349a51', FALSE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (13, 'Q005RH2A002', 20, '059a045d-c7ea-422f-8d42-288400349a51', FALSE, 0);
 INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (14, 'Q005RH2A003', 30, '059a045d-c7ea-422f-8d42-288400349a51', FALSE, 0);
 
 INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (15, 'Q006AUDITA001', 10, '5251e7ff-4560-4d7a-a624-a002e35ab753', TRUE, 0);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (16, 'Q006AUDITA002', 20, '5251e7ff-4560-4d7a-a624-a002e35ab753', TRUE, 5);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (16, 'Q006AUDITA002', 20, '5251e7ff-4560-4d7a-a624-a002e35ab753', TRUE, 0);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (17, 'Q007REGLA001', 10, '31a93341-8df1-4bf9-93c6-377089be1756', TRUE, 30);
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (18, 'Q007REGLA002', 20, '31a93341-8df1-4bf9-93c6-377089be1756', TRUE, 10);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (17, 'Q007REGLA001', 10, '31a93341-8df1-4bf9-93c6-377089be1756', TRUE, 0);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (18, 'Q007REGLA002', 20, '31a93341-8df1-4bf9-93c6-377089be1756', TRUE, 0);
 
 INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (19, 'Q008SERVICEA001', 10, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', FALSE, 0);
 INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (20, 'Q008SERVICEA002', 20, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', FALSE, 0);
 INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (21, 'Q008SERVICEA003', 30, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', FALSE, 0);
 
-INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (22, 'Q009BACKUPA001', 10, 'daa729d6-db30-4e4b-b91c-6610f7287c3e', FALSE, 25);
+INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (22, 'Q009BACKUPA001', 10, 'daa729d6-db30-4e4b-b91c-6610f7287c3e', FALSE, 0);
 INSERT INTO "survey_surveyquestionanswer" ("id", "answerKey", "aindex", "question_id", "uniqueAnswer", "score") VALUES (23, 'Q009BACKUPA002', 20, 'daa729d6-db30-4e4b-b91c-6610f7287c3e', FALSE, 0);
 
 
@@ -79,7 +79,6 @@ INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", 
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (4, 6, '5251e7ff-4560-4d7a-a624-a002e35ab753', 4, 2, 3); -- audit
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (5, 7, '5251e7ff-4560-4d7a-a624-a002e35ab753', 5, 2, 3); -- audit
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (6, 9, '5251e7ff-4560-4d7a-a624-a002e35ab753', 6, 2, 3); -- audit
--- TODO: validate/solve the possible problem of order, this should before audit in case if true
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (7, 8, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', 3, 2, 2); -- RH
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (8, 11, '5251e7ff-4560-4d7a-a624-a002e35ab753', 7, 0, 3); -- RH -> audit (for every branch)
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (9, 10, '059a045d-c7ea-422f-8d42-288400349a51', 8, 0, 2); -- RH -> RH of branch 3 (for every branch)
@@ -94,9 +93,10 @@ INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", 
 
 -- 4th branch
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (16, 4, '5fdd319c-cbcb-4dd9-a7d8-4277a977f697', 1, 4, 1); -- RH
-INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (17, 17, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', 2, 4, 2); -- CR -> Q008SERVICE
-INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (18, 18, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', 3, 4, 2); -- CR -> Q008SERVICE
-INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (19, 19, 'daa729d6-db30-4e4b-b91c-6610f7287c3e', 4, 4, 3); -- Q008SERVICE -> Q009BACKUP
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (21, 10, '5251e7ff-4560-4d7a-a624-a002e35ab753', 2, 4, 2); -- RH -> Audit (when we select "yes" on RH answer, so after coming back from the brach 3)
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (17, 17, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', 3, 4, 3); -- CR -> Q008SERVICE
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (18, 18, '586ffb9e-70a0-4c00-9ada-f99e44bb32a3', 4, 4, 3); -- CR -> Q008SERVICE
+INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (19, 19, 'daa729d6-db30-4e4b-b91c-6610f7287c3e', 5, 4, 4); -- Q008SERVICE -> Q009BACKUP
 
 -- 5th branch
 INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", "order", "branch", "level") VALUES (20, 5, '5251e7ff-4560-4d7a-a624-a002e35ab753', 1, 5, 5); -- audit
@@ -105,18 +105,18 @@ INSERT INTO "survey_surveyanswerquestionmap" ("id", "answer_id", "question_id", 
 /* survey_recommendations */
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC002_CHARTER', 'a', 'j', NULL, TRUE, 1);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC017_CAPACITY', 'a', 'j', NULL, TRUE, 1);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC018_CASCADE', 'a', 'b', NULL, TRUE, 1);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC024_SLA', 'c', 'j', NULL, TRUE, 1);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC018_CASCADE', 'a', 'j', NULL, TRUE, 1);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC024_SLA', 'a', 'j', NULL, TRUE, 1);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC025_NDA', 'a', 'j', NULL, TRUE, 1);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC027_ACTIFS', 'a', 'j', NULL, TRUE, 1);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC004_EQUIPMAINT', 'c', 'j', NULL, TRUE, 1);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC004_EQUIPMAINT', 'a', 'j', NULL, TRUE, 1);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC041_EQUIPREBUT', 'a', 'j', NULL, TRUE, 1);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC022_VULNRESP', 'a', 'j', NULL, TRUE, 1);
 
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC002_CHARTER', 'a', 'j', NULL, TRUE, 2);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC017_CAPACITY', 'a', 'j', NULL, TRUE, 2);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC018_CASCADE', 'a', 'b', NULL, TRUE, 2);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC024_SLA', 'c', 'j', NULL, TRUE, 2);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC018_CASCADE', 'a', 'j', NULL, TRUE, 2);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC024_SLA', 'a', 'j', NULL, TRUE, 2);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC025_NDA', 'a', 'j', NULL, TRUE, 2);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC027_ACTIFS', 'a', 'j', NULL, TRUE, 2);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC022_VULNRESP', 'a', 'j', NULL, TRUE, 2);
@@ -124,31 +124,36 @@ INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "
 
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC002_CHARTER', 'a', 'j', NULL, TRUE, 3);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC017_CAPACITY', 'a', 'j', NULL, TRUE, 3);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC018_CASCADE', 'a', 'b', NULL, TRUE, 3);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC024_SLA', 'c', 'j', NULL, TRUE, 3);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC018_CASCADE', 'a', 'j', NULL, TRUE, 3);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC024_SLA', 'a', 'j', NULL, TRUE, 3);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC025_NDA', 'a', 'j', NULL, TRUE, 3);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC027_ACTIFS', 'a', 'j', NULL, TRUE, 3);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC001_RH', 'a', 'j', NULL, TRUE, 3);
 
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC002_CHARTER', 'a', 'j', NULL, TRUE, 4);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC017_CAPACITY', 'a', 'j', NULL, TRUE, 4);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC018_CASCADE', 'a', 'b', NULL, TRUE, 4);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC024_SLA', 'c', 'j', NULL, TRUE, 4);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC018_CASCADE', 'a', 'j', NULL, TRUE, 4);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC024_SLA', 'a', 'j', NULL, TRUE, 4);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC025_NDA', 'a', 'j', NULL, TRUE, 4);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC027_ACTIFS', 'a', 'j', NULL, TRUE, 4);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC013_ANTIVIRUS', 'c', 'j', NULL, TRUE, 4);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC013_ANTIVIRUS', 'a', 'j', NULL, TRUE, 4);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC022_VULNRESP', 'a', 'j', NULL, TRUE, 4);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC026_EFFACEMENT', 'a', 'j', NULL, TRUE, 4);
 
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC002_CHARTER', 'a', 'j', NULL, TRUE, 5);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC017_CAPACITY', 'a', 'j', NULL, TRUE, 5);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC018_CASCADE', 'a', 'b', NULL, TRUE, 5);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC024_SLA', 'c', 'j', NULL, TRUE, 5);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC018_CASCADE', 'a', 'j', NULL, TRUE, 5);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC024_SLA', 'a', 'j', NULL, TRUE, 5);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC025_NDA', 'a', 'j', NULL, TRUE, 5);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC027_ACTIFS', 'a', 'j', NULL, TRUE, 5);
 
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC003_TELEWORKING', 'a', 'j', NULL, TRUE, 6);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC008_SOFTWMAINT', 'a', 'j', NULL, TRUE, 6);
+
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC009_LOGDEV', 'a', 'j', NULL, TRUE, 8);
+
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC001_RH', 'a', 'j', NULL, TRUE, 10);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC001_RH', 'a', 'j', NULL, TRUE, 11);
 
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC003_TELEWORKING', 'a', 'j', NULL, TRUE, 12);
 
@@ -266,12 +271,12 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q0
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA001', 'Oui', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA002', 'Non', 'fr', 'A');
 
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGL', 'Est-ce que le projet est soumis à des exigences légalels ou contractuelles (GDPR, etc.) ?', 'fr', 'Q');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGL', 'Est-ce que le projet est soumis à des exigences légales ou contractuelles (GDPR, etc.) ?', 'fr', 'Q');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGLA001', 'Oui', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGLA002', 'Non', 'fr', 'A');
 
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICE', 'Est-ce que l''un des éléments suivants sera sous-traité : ', 'fr', 'Q');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICEA001', 'Backup ', 'fr', 'A');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICE', 'Est-ce que l''un des éléments suivants sera sous-traité :', 'fr', 'Q');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICEA001', 'Backup', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICEA002', 'Service de communication', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q008SERVICEA003', 'Cloud', 'fr', 'A');
 
@@ -369,7 +374,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('RE
 
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC004_EQUIPMAINT', 'Les modalités et la fréquence de maintenance de l''infrastructure et les modalités d''intervention pour maintenance et dépannage sont gérés par des procédures établies.', 'fr', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC041_EQUIPREBUT', 'Lors d''une réutilisation ou mise au rebut de matériel, les données du client et les logiciels sous licence sont effacés ou leur support de stockage est détruit de façon irréversible et documentée.', 'fr', 'R');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC005_AUTHFCT', 'Lors d''une réutilisation ou mise au rebut de matériel, les données du client et les logiciels sous licence sont effacés ou leur support de stockage est détruit de façon irréversible et documentée.', 'fr', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC005_AUTHFCT', 'L''accès logique à une fonction ou transaction d''un système d''information ou logiciel sous-traité est limité et géré suivant une procédure établie.', 'fr', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC0051_IDENTIFY', 'Les utilisateurs ou processus accédant à un système d''information ou logiciel sous-traité sont identifiés.', 'fr', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC006_LOGICAL', 'L''authentification et l''autorisation pour l''accès de l''utilisateur ou du processus au système d''information ou logiciel sous-traité sont gérés suivant une procédure établie.', 'fr', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC007_SECPHY', 'L''accès physique du prestataire à un bâtiment, local ou une infrastructure est géré suivant une procédure établie. Les moyens d''accès remis au prestataires sont inventoriés et récupérés au terme de l''exécution du contrat.', 'fr', 'R');
@@ -434,7 +439,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('RE
 
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC004_EQUIPMAINT', 'Die Modalitäten und die Häufigkeit der Wartung der Infrastruktur sowie die Interventionsmodalitäten für Wartung und Fehlerbehebung werden nach festgelegten Verfahren verwaltet.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC041_EQUIPREBUT', 'Im Falle der Wiederverwendung oder Entsorgung von Hardware sind Kundendaten und lizenzierte Software zu löschen oder ihr Speichermedium irreversibel zu zerstören und zu dokumentieren.', 'de', 'R');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC005_AUTHFCT', 'Im Falle der Wiederverwendung oder Entsorgung von Hardware werden Kundendaten und lizenzierte Software gelöscht oder deren Speichermedium irreversibel zerstört und dokumentiert..', 'de', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC005_AUTHFCT', 'Der logische Zugriff auf eine Funktion oder Transaktion eines(einer) ausgelagerten Informationssystems oder Software ist eingeschränkt und wird nach einem festgelegten Verfahren verwaltet.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC0051_IDENTIFY', 'Benutzer oder Prozesse, die auf ein ausgelagertes Informationssystem oder eine ausgelagerte Software zugreifen, werden identifiziert.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC006_LOGICAL', 'Authentifizierung und Autorisierung für den Benutzer- oder Prozesszugriff auf das ausgelagerte Informationssystem oder die ausgelagerte Software werden nach einem festgelegten Verfahren verwaltet.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC007_SECPHY', 'Der physische Zugang des Anbieters zu einem Gebäude, einem Gelände oder einer Infrastruktur wird nach einem festgelegten Verfahren geregelt. Die dem Dienstleistungsanbieter gewährten Zugangsmittel werden inventarisiert und am Ende der Vertragsausführung wieder eingezogen.', 'de', 'R');
