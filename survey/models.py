@@ -236,6 +236,17 @@ class Recommendations(models.Model):
         )
 
 
+class RecommendationCategory(models.Model):
+    recommendation_key = models.CharField(max_length=32)
+    service_category = models.ForeignKey(SurveyQuestionServiceCategory, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.recommendation_key + '-' + self.service_category.titleKey)
+
+    class Meta:
+        unique_together = ("recommendation_key", "service_category")
+
+
 class Company(models.Model):
     # company name
     # company contact email

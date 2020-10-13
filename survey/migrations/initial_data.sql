@@ -14,6 +14,8 @@ INSERT INTO "survey_surveyquestionservicecategory" ("id", "titleKey") VALUES (6,
 INSERT INTO "survey_surveyquestionservicecategory" ("id", "titleKey") VALUES (7, 'SERVCAT007REGL');
 INSERT INTO "survey_surveyquestionservicecategory" ("id", "titleKey") VALUES (8, 'SERVCAT008SERVICE');
 INSERT INTO "survey_surveyquestionservicecategory" ("id", "titleKey") VALUES (9, 'SERVCAT009BACKUP');
+INSERT INTO "survey_surveyquestionservicecategory" ("id", "titleKey") VALUES (10, 'SERVCAT010SPECIFIC');
+
 
 /* survey_surveysection */
 INSERT INTO "survey_surveysection" ("id", "sectionTitleKey") VALUES (1, 'SECTION001GENERAL');
@@ -23,6 +25,7 @@ INSERT INTO "survey_surveysection" ("id", "sectionTitleKey") VALUES (4, 'SECTION
 INSERT INTO "survey_surveysection" ("id", "sectionTitleKey") VALUES (5, 'SECTION005CONTRAINTESREGL');
 INSERT INTO "survey_surveysection" ("id", "sectionTitleKey") VALUES (6, 'SECTION006SERVICE');
 INSERT INTO "survey_surveysection" ("id", "sectionTitleKey") VALUES (7, 'SECTION006BACKUP');
+
 
 /* survey_surveyquestion */
 INSERT INTO "survey_surveyquestion" ("uuid", "titleKey", "qtype", "qindex", "service_category_id", "section_id", "maxPoints") VALUES ('070946ca-abb0-44d0-b4b5-04c3155b78a9', 'Q001GENERAL', 'M', 1, 1, 1, 45);
@@ -172,6 +175,8 @@ INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC004_EQUIPMAINT', 'a', 'j', NULL, TRUE, 20);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC041_EQUIPREBUT', 'a', 'j', NULL, TRUE, 20);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC014_NETWORK', 'a', 'j', NULL, TRUE, 20);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC011_INCIDENT', 'a', 'j', NULL, TRUE, 20);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC023_CHANGE', 'a', 'j', NULL, TRUE, 20);
 
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC011_INCIDENT', 'a', 'j', NULL, TRUE, 21);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC021_PORT', 'a', 'j', NULL, TRUE, 21);
@@ -185,6 +190,35 @@ INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC023_CHANGE', 'a', 'j', NULL, TRUE, 23);
 
 
+/* survey_recommendationcategory */
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC001_RH', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC002_CHARTER', 1);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC003_TELEWORKING', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC004_EQUIPMAINT', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC005_AUTHFCT', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC006_LOGICAL', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC007_SECPHY', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC008_SOFTWMAINT', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC009_LOGDEV', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC010_BACKUP', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC011_INCIDENT', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC012_CONFORM', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC013_ANTIVIRUS', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC014_NETWORK', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC016_AUDIT', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC017_CAPACITY', 1);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC018_CASCADE', 1);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC021_PORT', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC022_VULNRESP', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC023_CHANGE', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC024_SLA', 1);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC025_NDA', 1);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC026_EFFACEMENT', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC027_ACTIFS', 1);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC041_EQUIPREBUT', 10);
+INSERT INTO "survey_recommendationcategory" ("recommendation_key", "service_category_id") VALUES ('REC0051_IDENTIFY', 10);
+
+
 /* survey_translationkey */
 -- FR
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT001GENERAL', 'Général', 'fr', 'C');
@@ -196,6 +230,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT007REGL', 'Contraintes règlementaires', 'fr', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT008SERVICE', 'Service', 'fr', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT009BACKUP', 'Backup', 'fr', 'C');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT010SPECIFIC', 'Spécifique', 'fr', 'C');
 
 -- EN
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT001GENERAL', 'General', 'en', 'C');
@@ -207,6 +242,8 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT007REGL', 'Regulatory constraints', 'en', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT008SERVICE', 'Service', 'en', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT009BACKUP', 'Backup', 'en', 'C');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT010SPECIFIC', 'Specific', 'en', 'C');
+
 -- DE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT001GENERAL', 'Allgemein', 'de', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT002LOGMAINTENANCE', 'Software-Wartung', 'de', 'C');
@@ -217,6 +254,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT007REGL', 'Rechtsvorschriften', 'de', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT008SERVICE', 'Service', 'de', 'C');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT009BACKUP', 'Backup', 'de', 'C');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SERVCAT010SPECIFIC', 'Spezifisch', 'de', 'C');
 
 -- FR
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION001GENERAL', 'Description du service', 'fr', 'S');

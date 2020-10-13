@@ -11,6 +11,7 @@ from survey.models import (
     Recommendations,
     TranslationKey,
     SurveyUserQuestionSequence,
+    RecommendationCategory,
 )
 
 from survey.globals import TRANSLATION_UI
@@ -49,9 +50,16 @@ def get_recommendations(user: SurveyUser, lang: str):
             if (user_answer.uvalue > 0 and rec.answerChosen) or (
                 user_answer.uvalue <= 0 and not rec.answerChosen
             ):
-                category_name = categories_translations[
-                    rec.forAnswer.question.service_category.titleKey
-                ]
+                # we get all the categories related to the recommendation and join them.
+                recommendation_categories = RecommendationCategory.objects.filter(recommendation_key=rec.textKey)
+                category_name = ""
+                for index, recommendation_category in enumerate(recommendation_categories):
+                    category_name += categories_translations[recommendation_category.service_category.titleKey]
+                    if len(recommendation_categories) > (index + 1):
+                        category_name += ' & '
+                if category_name == "":
+                    category_name = categories_translations[rec.forAnswer.question.service_category.titleKey]
+
                 transalted_recommendation = recommendations_translations[rec.textKey]
                 if is_recommendation_already_added(transalted_recommendation, final_report_recs):
                     continue
