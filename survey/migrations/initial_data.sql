@@ -123,7 +123,7 @@ INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC025_NDA', 'a', 'j', NULL, TRUE, 2);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC027_ACTIFS', 'a', 'j', NULL, TRUE, 2);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC022_VULNRESP', 'a', 'j', NULL, TRUE, 2);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC026_EFFACEMENT', 'a', 'j', NULL, TRUE, 1);
+INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC026_EFFACEMENT', 'a', 'j', NULL, TRUE, 2);
 
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC002_CHARTER', 'a', 'j', NULL, TRUE, 3);
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC017_CAPACITY', 'a', 'j', NULL, TRUE, 3);
@@ -156,7 +156,6 @@ INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC009_LOGDEV', 'a', 'j', NULL, TRUE, 8);
 
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC001_RH', 'a', 'j', NULL, TRUE, 10);
-INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC001_RH', 'a', 'j', NULL, TRUE, 11);
 
 INSERT INTO "survey_recommendations" ("textKey", "min_e_count", "max_e_count", "sector", "answerChosen", "forAnswer_id") VALUES ('REC003_TELEWORKING', 'a', 'j', NULL, TRUE, 12);
 

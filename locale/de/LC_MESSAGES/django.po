@@ -54,15 +54,15 @@ msgid "Terms of Service"
 msgstr "Nutzungsbedingungen"
 
 #: templates/survey/index.html:17
-msgid "Welcome to the all new self-assessment tool"
+msgid "Welcome to the Fit4Contract tool"
 msgstr ""
-"Willkommen beim brandneuen Tool zur Selbstbewertung"
+"Willkommen beim Fit4Contract-Tool"
 
 #: templates/survey/index.html:18
 msgid ""
-"This survey will ask some questions and present some recommendations, based on your answers. Keep in mind, that it is a self-assessment tool and that it only touches the surface of information security by giving some basic recommendations. And that due to the aforementioned reasons, we are not liable for the result or recommendation implementations."
+"This questionnaire aims to identify the general scope of the contractual relationship considered, in order to set up an acquisition, a lease, a development or any other service in the field of information and communication technologies. Based on this scope, Fit4Contract provides a list of basic information security requirements that are recommended to be considered in establishing the contractual relationship. These basic requirements need to be specifically adapted to the subcontracted services, a context setting that needs to be detailed in the specific contract specifications linked to the subcontracting agreement."
 msgstr ""
-"Diese Umfrage wird einige Fragen stellen und einige Empfehlungen basierend auf Ihren Antworten präsentieren. Denken Sie daran, dass es sich um ein Selbstbewertungsinstrument handelt und dass es nur die Oberfläche der Informationssicherheit berührt, indem es einige grundlegende Empfehlungen gibt. Und dass wir aus den oben genannten Gründen nicht für das Ergebnis oder die Umsetzung von Empfehlungen haften."
+"Dieser Fragebogen zielt darauf ab, den allgemeinen Umfang des geplanten Vertragsverhältnisses zu ermitteln, um eine Anschaffung, eine Anmietung, eine Entwicklung oder eine andere Dienstleistung im Bereich der Informations- und Kommunikationstechnologien auszuführen. Ausgehend von diesem Umfang, erstellt Fit4Contract eine Liste mit grundlegenden Anforderungen an die Informationssicherheit, die bei der Ausarbeitung der Vertragsbeziehung berücksichtigt werden sollten. Diese Grundanforderungen benötigen einer spezifischen Anpassung an den Kontext der untervergebenen Dienstleistungen und sollten dementsprechend im Dienstleistungsvertrag ausführlich beschrieben werden."
 
 #: templates/survey/index.html:51
 msgid "Continue a previous survey"
