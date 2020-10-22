@@ -210,43 +210,47 @@ def save_answers(answer_choices, answers, user: SurveyUser,
 
 
 def create_questions_sequence(user: SurveyUser, question_answer: SurveyQuestionAnswer,
-                                                current_branch: int, question_index: int):
+                            current_branch: int, question_index: int):
     answer_questions_map = SurveyAnswerQuestionMap.objects.filter(answer=question_answer).order_by("branch", "order")
     number_of_questions_in_user_sequence = get_number_of_questions_in_user_sequence(user)
     for answer_question_map in answer_questions_map:
-        sequence = get_sequence_by_user_and_question(user, answer_question_map.question)
+        sequence = get_active_sequence_by_user_and_question(user, answer_question_map.question)
 
         # in case if the question is already added in one of the futher branches.
         if (sequence and not sequence.has_been_answered and sequence.branch > current_branch and (
                 not answer_question_map.branch or current_branch == answer_question_map.branch)
             ):
             increment_questions_sequence_order_from(user, question_index, sequence.index, 2)
-            sequence.branch = current_branch
-            sequence.index = question_index + 1
+            save_question_sequence_and_validate_user_status(user, sequence.question,
+                                                    question_index + 1, current_branch, sequence.level)
+            # inactivate the sequence in the future branch to be able to validate its answers later.
+            sequence.is_active = False
+            sequence.index = 0
             sequence.save()
+
             continue
 
         # normal scenario of adding questions to the sequence.
+        # if map.branch == current_branch or if the map is general (branch = 0).
         if (not sequence and (
                 not answer_question_map.branch or current_branch == answer_question_map.branch)
             ):
             number_of_questions_in_user_sequence += 1
             save_question_sequence_and_validate_user_status(user, answer_question_map.question,
                                 number_of_questions_in_user_sequence, current_branch, answer_question_map.level)
+
             continue
 
-        # in case if the answer leads to another branch (we go to the next brach).
+        # in case if the answer leads to another branch (the map is related to another branch).
         if not sequence and answer_question_map.branch:
-            branches = SurveyUserQuestionSequence.objects.filter(user=user,
-                    branch__isnull=False).values('branch').distinct().values_list('branch', flat=True)
-            if answer_question_map.branch in list(branches):
+            if answer_question_map.branch in get_list_of_available_branches(user):
                 number_of_questions_in_user_sequence += 1
                 save_question_sequence_and_validate_user_status(user, answer_question_map.question,
                         number_of_questions_in_user_sequence, answer_question_map.branch, answer_question_map.level)
                 continue
 
         # in case if we modify a question answer from 0 to 1 and related questions are already answered,
-        # but not in this branch so we go deeper through the answers
+        # but not in this branch so we go deeper through the answers.
         if sequence and sequence.branch != current_branch:
             answers = SurveyUserAnswer.objects.filter(user=user, answer__question=sequence.question)
             for answer in answers:
@@ -287,9 +291,7 @@ def is_question_referenced_to_user_answers(user: SurveyUser, user_answers: Query
             if not answer_question_map.branch:
                 return True
 
-            branches = SurveyUserQuestionSequence.objects.filter(user=user,
-                    branch__isnull=False).values('branch').distinct().values_list('branch', flat=True)
-            if answer_question_map.branch in list(branches):
+            if answer_question_map.branch in get_list_of_available_branches(user):
                 return True
 
     return False
@@ -428,7 +430,8 @@ def handle_general_feedback(user: SurveyUser(), request):
 
 
 def get_current_user_question_index_from_sequence(user: SurveyUser):
-    user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user, question=user.current_question)
+    user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user,question=user.current_question,
+                                                                        is_active=True)
     if user_question_sequence:
         return user_question_sequence[0].index
     else:
@@ -439,21 +442,22 @@ def get_sequence_by_user_and_index(user: SurveyUser, index: int):
     return SurveyUserQuestionSequence.objects.filter(user=user, index=index)[:1][0]
 
 
-def get_sequence_by_user_and_question(user: SurveyUser, question: SurveyQuestion):
-    sequence = SurveyUserQuestionSequence.objects.filter(user=user, question=question)[:1]
+def get_active_sequence_by_user_and_question(user: SurveyUser, question: SurveyQuestion):
+    sequence = SurveyUserQuestionSequence.objects.filter(user=user, question=question, is_active=True)[:1]
     if sequence:
         return sequence[0]
 
     return None
 
 
+
 def get_number_of_questions_in_user_sequence(user):
-    return SurveyUserQuestionSequence.objects.filter(user=user).count()
+    return SurveyUserQuestionSequence.objects.filter(user=user, is_active=True).count()
 
 
 def get_next_sequence_with_not_answered_question(user: SurveyUser, question_index: int):
-    questions_sequence = SurveyUserQuestionSequence.objects.filter(user=user,
-                                                has_been_answered=False).order_by("branch", "level", "index")[:1]
+    questions_sequence = SurveyUserQuestionSequence.objects.filter(user=user, has_been_answered=False,
+                                                    is_active=True).order_by("branch", "level", "index")[:1]
     if questions_sequence:
         return questions_sequence[0]
 
@@ -461,8 +465,8 @@ def get_next_sequence_with_not_answered_question(user: SurveyUser, question_inde
 
 
 def get_answered_questions_sequences(user: SurveyUser):
-    return SurveyUserQuestionSequence.objects.filter(user=user,
-                                            has_been_answered=True).order_by("branch", "level", "index")
+    return SurveyUserQuestionSequence.objects.filter(user=user, has_been_answered=True,
+                                                    is_active=True).order_by("branch", "level", "index")
 
 
 def mark_sequence_as_answered(sequence: SurveyUserQuestionSequence):
@@ -478,7 +482,7 @@ def has_user_answered_on_the_question(user: SurveyUser, question: SurveyQuestion
 
 
 def increment_questions_sequence_order_from(user: SurveyUser, question_index: int, index_limit: int, increment: int):
-    questions_sequence = SurveyUserQuestionSequence.objects.filter(user=user,
+    questions_sequence = SurveyUserQuestionSequence.objects.filter(user=user, is_active=True,
                 index__gt=question_index, has_been_answered=False).order_by("branch", "level", "index")
     if index_limit:
         questions_sequence = questions_sequence.filter(index__lt=index_limit)
@@ -491,7 +495,7 @@ def increment_questions_sequence_order_from(user: SurveyUser, question_index: in
 def get_total_questions_number(user: SurveyUser, question_index: int):
     branches_number = 5
     if question_index > 1:
-        branches_number = SurveyUserQuestionSequence.objects.filter(user=user,
+        branches_number = SurveyUserQuestionSequence.objects.filter(user=user, is_active=True,
                                             branch__isnull=False).values('branch').distinct().count()
     total_questions_num = SurveyAnswerQuestionMap.objects.values('question').distinct().count()
     total_questions_num = int(math.ceil(total_questions_num * 5 / branches_number))
@@ -502,4 +506,13 @@ def get_total_questions_number(user: SurveyUser, question_index: int):
 
 
 def get_last_user_sequence(user: SurveyUser):
-    return SurveyUserQuestionSequence.objects.filter(user=user).order_by('-index')[:1][0]
+    return SurveyUserQuestionSequence.objects.filter(user=user, is_active=True).order_by('-index')[:1][0]
+
+
+def get_related_inactive_instances(sequence: SurveyUserQuestionSequence):
+    return SurveyUserQuestionSequence.objects.filter(user=sequence.user, answer=sequence.answer, is_active=False)
+
+
+def get_list_of_available_branches(user: SurveyUser):
+    return list(SurveyUserQuestionSequence.objects.filter(user=user,
+                                branch__isnull=False).values('branch').distinct().values_list('branch', flat=True))

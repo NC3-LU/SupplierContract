@@ -206,12 +206,13 @@ class SurveyUserQuestionSequence(models.Model):
     level = models.SmallIntegerField(null=False, default=1)
     index = models.IntegerField(default=1)
     has_been_answered = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.user)
 
     class Meta:
-        unique_together = ("user", "question")
+        unique_together = ("user", "question", "branch")
 
 
 class Recommendations(models.Model):
