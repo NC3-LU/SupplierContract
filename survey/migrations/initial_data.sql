@@ -308,7 +308,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q0
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA001', 'Oui', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA002', 'Non', 'fr', 'A');
 
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGL', 'Est-ce que le projet est soumis à des exigences légales ou contractuelles (GDPR, etc.) ?', 'fr', 'Q');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGL', 'Est-ce que le projet est soumis à des exigences légales ou contractuelles (p.ex. DAC, AML, GDPR, etc.) ?', 'fr', 'Q');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGLA001', 'Oui', 'fr', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGLA002', 'Non', 'fr', 'A');
 
@@ -350,7 +350,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q0
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA001', 'Yes', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA002', 'No', 'en', 'A');
 
-  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGL', 'Is the project subject to any legal or contractual requirements (GDPR etc.) ?', 'en', 'Q');
+  INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGL', 'Is the project subject to any legal or contractual requirements (like DAC, AML, GDPR etc.) ?', 'en', 'Q');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGLA001', 'Yes', 'en', 'A');
       INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGLA002', 'No', 'en', 'A');
 
@@ -391,7 +391,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q0
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA001', 'Ja', 'de', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA002', 'Nein', 'de', 'A');
 
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGL', 'Unterliegt das Projekt gesetzlichen oder vertraglichen Anforderungen (DSGVO, etc.)?', 'de', 'Q');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGL', 'Unterliegt das Projekt gesetzlichen oder vertraglichen Anforderungen (z.b. DAC, AML, DSGVO, etc.)?', 'de', 'Q');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGLA001', 'Ja', 'de', 'A');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q007REGLA002', 'Nein', 'de', 'A');
 
@@ -405,7 +405,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q0
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q009BACKUPA002', 'Alle oder ein Teil der Daten werden in einer Cloud-Infrastruktur gespeichert.', 'de', 'A');
 
 -- FR
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC001_RH', 'Un screening d’un collabateur externe est réalisé avant l’embauche. Lors du départ du collaborateur externe, une procédure assure que ce dernier rend tous les biens prêtés par l’organisation du client (matériel, laptop, clés, badges, smartphone, etc.)', 'fr', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC001_RH', 'Le collaborateur externe est soigneusement séléctionné lors du processus d’embauche. Lors du départ du collaborateur externe, une procédure assure que ce dernier rend tous les biens prêtés par l’organisation du client (matériel, laptop, clés, badges, smartphone, etc.)', 'fr', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC002_CHARTER', 'Le prestataire adhère aux pratiques de sécurité de l’organisation du client et communique toute situation où cette adhésion n’est pas possible, pour contribuer à prévenir des lacunes ou des conflits en matière de sécurité qui pourraient nuire aux performances de sécurité. Il convient de formaliser les pratiques de sécurité dans une charte de bonne conduite en matière de sécurité des systèmes d’informations.', 'fr', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC003_TELEWORKING', 'Les modalités d’un travail ou d’une maintenance à distance sont formalisées. Le dispositif et les mesures de sécurité techniques et organisationnelles mises en place par le prestataire sont validés par le client.', 'fr', 'R');
 
@@ -438,7 +438,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('RE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC027_ACTIFS', 'Les actif nécessaires à l’exécution du contrat et les droits de propriété associés sont gérés durant les différentes étapes de l’exécution.', 'fr', 'R');
 
 -- EN
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC001_RH', 'A screening of the External Collaborator is carried out before hiring. When the External Collaborator leaves, a procedure ensures that the Collaborator returns all the goods received from the Client’s organization (equipment, laptop, keys, badges, smartphone, etc.)', 'en', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC001_RH', 'External Collaborator should be carefully selected during the hiring process. When the External Collaborator leaves, a procedure ensures that the Collaborator returns all the goods received from the Client’s organization (equipment, laptop, keys, badges, smartphone, etc.)', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC002_CHARTER', 'The Provider complies with the security practices of the Customer’s organization. Any situations where such compliance is not possible are reported to help prevent security gaps or conflicts that could adversely affect security performance. Security practices are formalized in a charter of good conduct for information security systems.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC003_TELEWORKING', 'The terms and conditions of remotely controlled operations and/or maintenance are formalized. Technical and organizational security measures implemented by the Service Provider are validated by the Customer.', 'en', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC004_EQUIPMAINT', 'The terms and frequency of maintenance, intervention and troubleshooting of the infrastructure are managed by established procedures.', 'en', 'R');
