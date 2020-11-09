@@ -90,9 +90,11 @@ def change_lang(request, lang: str):
 
 
 def show_report(request, lang):
-    user_id = request.session["user_id"]
-    user = find_user_by_id(user_id)
+    user_id = request.session.get("user_id", None)
+    if user_id == None:
+        return HttpResponseRedirect("/")
 
+    user = find_user_by_id(user_id)
     if not user.is_survey_finished():
         messages.error(
             request, _("To generate a report you have to finish the survey.")
@@ -109,7 +111,10 @@ def show_report(request, lang):
 
 
 def review(request):
-    user_id = request.session["user_id"]
+    user_id = request.session.get("user_id", None)
+    if user_id == None:
+        return HttpResponseRedirect("/")
+
     user = find_user_by_id(user_id)
     if user.is_survey_finished():
         return HttpResponseRedirect("/survey/finish")
@@ -163,7 +168,10 @@ def review(request):
 
 
 def finish(request):
-    user_id = request.session["user_id"]
+    user_id = request.session.get("user_id", None)
+    if user_id == None:
+        return HttpResponseRedirect("/")
+
     user = find_user_by_id(user_id)
     if not user.is_survey_finished():
         return HttpResponseRedirect("/")
