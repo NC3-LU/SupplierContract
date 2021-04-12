@@ -13,7 +13,7 @@ def load_data_from_sql(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    dependencies = [("survey", "0002_surveyanswerquestionsequence_surveyuserquestionhistory")]
+    dependencies = [("survey", "0003_recommendationcategory")]
 
     operations = [
         migrations.RunPython(load_data_from_sql),
