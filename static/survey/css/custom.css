@@ -38,6 +38,9 @@ body {
 .footer .right {
     float: right;
 }
+.flag {
+  width: 35px !important;
+}
 #ie-warning {
     display: none;
 }
