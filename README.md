@@ -17,8 +17,8 @@ $ sudo apt install gettext postgresql
 ### Set up your Python environment
 
 ```bash
-$ pyenv install 3.8.1 # install Python
-$ pyenv global 3.8.1 # make this version default for the whole system
+$ pyenv install 3.9.7 # install Python
+$ pyenv global 3.9.7 # make this version default for the whole system
 $ pyenv versions # check
 ```
 
@@ -83,14 +83,18 @@ $ poetry run python manage.py compilemessages
 If you want to update the translations, you must first run:
 
 ```bash
-$ python manage.py makemessages # extract the translations
+$ python manage.py makemessages -a --keep-pot # extract the translations
 ```
 
 Then you can use a tool like
 [poedit](https://poedit.net) to translate the strings and you can compile with
 the previously mentioned command.
 
+If you want to re-generate the .pot file:
 
+```bash
+$ python manage.py makemessages --keep-pot
+```
 
 ## License
 
