@@ -1,11 +1,11 @@
-FROM python:3.8-alpine
+FROM python:3.10.2-alpine
 
 RUN apk update && \
   apk add \
   build-base \
   curl \
   git \
-  python-dev \
+  python3-dev \
   gettext \
   freetype-dev \
   libffi-dev \
@@ -15,7 +15,13 @@ RUN apk update && \
   libpq \
   postgresql-client \
   postgresql-dev \
-  npm
+  npm \
+  libgcc \
+  libquadmath \
+  musl \
+  libgfortran \
+  lapack-dev \
+  rust
 
 WORKDIR csskp
 

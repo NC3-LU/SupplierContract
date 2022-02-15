@@ -189,7 +189,7 @@ def save_answers(answer_choices, answers, user: SurveyUser,
         else:
             answer = answer[0]
 
-        # for the fisrt question we take branch from the question number.
+        # for the first question we take branch from the question number.
         if question_index == 1:
             current_branch = existing_answer_ids.index(a) + 1
 
@@ -216,7 +216,7 @@ def create_questions_sequence(user: SurveyUser, question_answer: SurveyQuestionA
     for answer_question_map in answer_questions_map:
         sequence = get_active_sequence_by_user_and_question(user, answer_question_map.question)
 
-        # in case if the question is already added in one of the futher branches.
+        # in case if the question is already added in one of the further branches.
         if (sequence and not sequence.has_been_answered and sequence.branch > current_branch and (
                 not answer_question_map.branch or current_branch == answer_question_map.branch)
             ):
@@ -430,8 +430,9 @@ def handle_general_feedback(user: SurveyUser(), request):
 
 
 def get_current_user_question_index_from_sequence(user: SurveyUser):
-    user_question_sequence = SurveyUserQuestionSequence.objects.filter(user=user,question=user.current_question,
-                                                                        is_active=True)
+    user_question_sequence = SurveyUserQuestionSequence.objects.filter(
+        user=user, question=user.current_question, is_active=True
+    )
     if user_question_sequence:
         return user_question_sequence[0].index
     else:

@@ -425,5 +425,6 @@ def get_answered_questions_list(user: SurveyUser):
 
 
 def get_answered_questions_sequences(user: SurveyUser):
-    return SurveyUserQuestionSequence.objects.filter(user=user,
-                                                    has_been_answered=True).order_by("branch", "level", "index")
+    return SurveyUserQuestionSequence.objects.filter(
+        user=user, has_been_answered=True
+    ).order_by("branch", "level", "index")

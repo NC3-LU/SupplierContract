@@ -274,7 +274,7 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SE
 -- DE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION001GENERAL', 'Beschreibung des Services', 'de', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION002LOGICIEL', 'Software', 'de', 'S');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION003RH', 'Personal', 'de', 'S');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION003RH', 'Humanressourcen', 'de', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION004AUDIT', 'Audit', 'de', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION005CONTRAINTESREGL', 'Rechtsvorschriften', 'de', 'S');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('SECTION006SERVICE', 'Service', 'de', 'S');
@@ -300,9 +300,9 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q0
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q004RH1A002', 'Non', 'fr', 'A');
 
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2', 'Pouvez-vous décrire l’interaction de cette(ces) personne(s) avec votre organismes : ', 'fr', 'Q');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2A001', 'Elles travailleront à distance', 'fr', 'A');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2A002', 'Elles auront accès au bâtiment ', 'fr', 'A');
-    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2A003', 'Elles auront un accès logique au système d’information', 'fr', 'A');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2A001', 'Ils travailleront à distance', 'fr', 'A');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2A002', 'Ils auront accès au bâtiment ', 'fr', 'A');
+    INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q005RH2A003', 'Ils auront un accès logique au système d’information', 'fr', 'A');
 
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDIT', 'Est-ce que la prestation devra être auditée ?', 'fr', 'Q');
     INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('Q006AUDITA001', 'Oui', 'fr', 'A');
@@ -415,8 +415,8 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('RE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC0051_IDENTIFY', 'Les utilisateurs ou processus accédant à un système d’information ou logiciel sous-traité sont identifiés.', 'fr', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC006_LOGICAL', 'L’authentification et l’autorisation pour l’accès de l’utilisateur ou du processus au système d’information ou logiciel sous-traité sont gérés suivant une procédure établie.', 'fr', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC007_SECPHY', 'L’accès physique du prestataire à un bâtiment, local ou une infrastructure est géré suivant une procédure établie. Les moyens d’accès remis au prestataires sont inventoriés et récupérés au terme de l’exécution du contrat.', 'fr', 'R');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC008_SOFTWMAINT', 'Les modalités et la fréquence de maintenance ou de mise à jour du logiciel ou du système d’exploitation sont gérés suivant une procédure établie.', 'fr', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC009_LOGDEV', 'Le contrat prend en compte les spécificités liées aux développements logiciels comme les licences.  Le contrat définit également les référentiels de bonnes pratiques (p.ex. OWASP) à suivre lors du développement.', 'fr', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC008_SOFTWMAINT', 'Les modalités et la fréquence de maintenance ou de mise à jour du logiciel ou du système d’exploitation sont gérés suivant une procédure établie.', 'fr', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC010_BACKUP', 'Lors de la sous-traitance d’un service de sauvegarde (backup), les éléments suivants sont gérés :
 - les mécanismes de mise en redondance et de récupération des sauvegardes ;
 - l’externalisation des infrastructures de sauvegarde ;
@@ -477,8 +477,8 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('RE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC004_EQUIPMAINT', 'Die Modalitäten und die Häufigkeit der Wartung der Infrastruktur sowie die Interventionsmodalitäten für Wartung und Fehlerbehebung werden nach festgelegten Verfahren verwaltet.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC041_EQUIPREBUT', 'Im Falle einer Wiederverwendung oder Entsorgung von Hardware sind Kundendaten und lizenzierte Software zu löschen oder deren Speichermedium irreversibel zu zerstören. Der entsprechende Vorgang wird entsprechend dokumentiert.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC005_AUTHFCT', 'Der logische Zugriff auf eine Funktion oder Transaktion eines(einer) ausgelagerten Informationssystems oder Software ist eingeschränkt und wird nach einem festgelegten Verfahren verwaltet.', 'de', 'R');
-INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC0051_IDENTIFY', 'Benutzer oder Prozesse, die auf ein ausgelagertes Informationssystem oder eine ausgelagerte Software zugreifen, werden identifiziert.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC006_LOGICAL', 'Authentifizierung und Autorisierung des Benutzer- oder Prozesszugriffs auf das ausgelagerte Informationssystem oder die ausgelagerte Software werden nach einem festgelegten Verfahren verwaltet.', 'de', 'R');
+INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC0051_IDENTIFY', 'Benutzer oder Prozesse, die auf ein ausgelagertes Informationssystem oder eine ausgelagerte Software zugreifen, werden identifiziert.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC007_SECPHY', 'Der physische Zugang des Dienstleistungsanbieters zu einem Gebäude, einer Räumlichkeit oder einer Infrastruktur wird nach einem festgelegten Verfahren geregelt. Die dem Dienstleistungsanbieter gewährten Zugangsmittel werden inventarisiert und bei Vertragsende wieder eingezogen.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC008_SOFTWMAINT', 'Die Methoden und die Häufigkeit der Wartung oder Aktualisierung der Software oder des Betriebssystems werden nach einem festgelegten Verfahren verwaltet.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC009_LOGDEV', 'Der Vertrag berücksichtigt Besonderheiten, die im Zusammenhang mit Software-Entwicklungen stehen, wie z.B. die Lizenzen.  Der Vertrag definiert weiterhin ein Verzeichnis bewährter Praktiken (z.B. OWASP), welche bei der Entwicklung zu befolgen ist.', 'de', 'R');
@@ -501,3 +501,10 @@ INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('RE
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC025_NDA', 'Der Dienstleistungsanbieter und alle nachgeordneten Auftragnehmer oder Zulieferer haben die Vertraulichkeit der Informationen zu wahren, von denen sie während der Ausführung des Vertrags Kenntnis erhalten. Zu diesem Zweck wird zwischen den Vertragsparteien eine Vertraulichkeits- und Geheimhaltungsvereinbarung ausgearbeitet. Diese Vereinbarung ist sowohl für die Dienstleistungsfirmen und Lieferanten, als auch für deren jeweiligen Mitarbeiter individuell bindend. Die Verpflichtung kann über den Zeitraum der Vertragserfüllung hinausgehen, wenn der Grad der Vertraulichkeit dies erfordert.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC026_EFFACEMENT', 'Bei Vertragsende werden die Daten des Kunden nach einem festgelegten Verfahren unwiderruflich gelöscht. Die Durchführung wird entsprechend dokumentiert. Insbesonders sind in diesem Zusammenhang die gesetzlichen Bestimmungen zum Schutz personenbezogener Daten zu berücksichtigen.', 'de', 'R');
 INSERT INTO "survey_translationkey" ("key", "text", "lang", "ttype") VALUES ('REC027_ACTIFS', 'Die für die Vertragserfüllung notwendigen Aktiva und die verbundenen Eigentumsrechte werden in den verschiedenen Phasen der Vertragserfüllung verwaltet.', 'de', 'R');
+
+
+-- Update the sequences IDs
+SELECT setval('survey_surveysection_id_seq', (SELECT MAX(id) from "survey_surveysection"));
+SELECT setval('survey_surveyquestionservicecategory_id_seq', (SELECT MAX(id) from "survey_surveyquestionservicecategory"));
+SELECT setval('survey_surveyquestionanswer_id_seq', (SELECT MAX(id) from "survey_surveyquestionanswer"));
+SELECT setval('survey_surveyanswerquestionmap_id_seq', (SELECT MAX(id) from "survey_surveyanswerquestionmap"));
